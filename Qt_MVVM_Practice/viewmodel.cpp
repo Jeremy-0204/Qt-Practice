@@ -1,7 +1,9 @@
 #include "viewmodel.h"
 
 ViewModel :: ViewModel()
-{}
+{
+    qmlRegisterType<ViewModel>("ViewModel", 1, 0, "ViewModel");
+}
 
 ViewModel :: ~ViewModel()
 {}

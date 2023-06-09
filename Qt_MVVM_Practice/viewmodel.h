@@ -3,6 +3,8 @@
 #include <model.h>
 #include <QObject>
 
+#include <QQuickView>
+
 class ViewModel : public QObject
 {
     Q_OBJECT
