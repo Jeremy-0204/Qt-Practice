@@ -45,6 +45,7 @@ void ConnectEvent::CppSlotStringData(QVariant StringData)
     if (mMainView)
     {
         QMetaObject::invokeMethod(mMainView, "updateSignalResponse", Q_ARG(QVariant, StringData));
+        QMetaObject::invokeMethod(mMainView, "openDialog", Q_ARG(QVariant, StringData));
     }
 
     cout << "Received: " + data_str << endl;
@@ -60,6 +61,7 @@ void ConnectEvent :: CppSlotIntdata(QVariant IntData)
     if (mMainView)
     {
         QMetaObject::invokeMethod(mMainView, "updateSignalResponse", Q_ARG(QVariant, IntData));
+        QMetaObject::invokeMethod(mMainView, "openDialog", Q_ARG(QVariant, IntData));
     }
     cout << "Received : " << data_int << endl;
 }

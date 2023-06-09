@@ -23,8 +23,15 @@ Window {
         signalresponse.text = data;
     }
 
-    function updateSignalResponse(data) {
+    function updateSignalResponse(data)
+    {
         signalresponse.text = data;
+    }
+
+    function openDialog(data)
+    {
+        dialogText.text = data;
+        dialog.open()
     }
 
     StackView
@@ -43,24 +50,24 @@ Window {
             {
                 anchors.fill: parent
                 color: "white"
+            }
 
-                TextField {
-                    id: textField0
-                    x: 245
-                    y: 283
-                    width: 62
-                    height: 22
-                    placeholderText: qsTr("Number")
-                }
+            TextField {
+                id: textField0
+                x: 245
+                y: 283
+                width: 62
+                height: 22
+                placeholderText: qsTr("Number")
+            }
 
-                TextField {
-                    id: textField1
-                    x: 245
-                    y: 319
-                    width: 62
-                    height: 22
-                    placeholderText: qsTr("Text Field")
-                }
+            TextField {
+                id: textField1
+                x: 245
+                y: 319
+                width: 62
+                height: 22
+                placeholderText: qsTr("Text Field")
             }
 
             Text
@@ -93,6 +100,7 @@ Window {
                 {
                     console.log("qml signal intButton click")
                     qmlSignalInt(textField0.text); //qml 에서 signal을 발생시키는 부분
+                    openDialog(textField0.text)
                 }
             }
 
@@ -112,6 +120,23 @@ Window {
                     console.log("qml signal strButton click")
                     qmlSignalString(textField1.text); //qml 에서 signal을 발생시키는 부분
                 }
+            }
+
+            Dialog
+            {
+                id: dialog
+                title: "QmlSignalResult"
+                standardButtons: Dialog.Ok | Dialog.Cancel
+                x:(parent.width-width)/2
+                y:(parent.height-height)/2
+
+                contentItem: Text
+                {
+                    id: dialogText
+                    text: "HELLO"
+                }
+                onAccepted: console.log("Ok Clicked")
+                onRejected: console.log("Cancel Clicked")
             }
         }
     }
