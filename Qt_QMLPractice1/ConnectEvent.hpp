@@ -1,0 +1,4 @@
+#ifndef CONNECTEVENT_HPP
+#define CONNECTEVENT_HPP
+
+#endif // CONNECTEVENT_HPP
