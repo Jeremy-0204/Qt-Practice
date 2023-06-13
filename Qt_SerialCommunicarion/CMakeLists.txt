@@ -11,6 +11,8 @@ qt_standard_project_setup()
 
 qt_add_executable(appQt_SerialCommunicarion
     main.cpp
+    serialportwrapper.h
+    serialportwrapper.cpp
 )
 
 qt_add_qml_module(appQt_SerialCommunicarion

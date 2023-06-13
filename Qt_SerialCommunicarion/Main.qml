@@ -1,51 +1,74 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls 2.15
+import SerialPort 1.0
 
 ApplicationWindow {
     visible: true
     width: 400
-    height: 300
-    title: "Serial Communication Example"
+    height: 200
+    title: "Serial Communication"
+
+    SerialPortWrapper {
+        id: serialPort
+    }
 
     Column {
-        anchors.centerIn: parent
         spacing: 10
-
-        Text {
-            text: "Serial Port Settings"
-            font.pixelSize: 16
-        }
 
         ComboBox {
             id: portComboBox
             width: 200
-            model: SerialPortInfo
+            model: serialPort.availablePorts()
             displayText: "Select Port"
         }
 
         Button {
             text: "Open Port"
             onClicked: {
-                if (portComboBox.currentIndex !== -1) {
-                    var portInfo = portComboBox.currentText
-                    serialPort.setPort(portInfo)
-                    if (serialPort.open(QIODevice.ReadWrite)) {
-                        console.log("Port opened:", portInfo)
-                    } else {
-                        console.error("Failed to open port:", portInfo)
-                    }
-                }
+                var portName = portComboBox.currentText
+                var baudRate = 9600
+                if (serialPort.open(portName, baudRate))
+                    console.log("Port opened successfully")
+                else
+                    console.log("Failed to open port")
             }
         }
 
         Button {
             text: "Close Port"
             onClicked: {
-                if (serialPort.isOpen) {
-                    serialPort.close()
-                    console.log("Port closed")
-                }
+                serialPort.close()
+                console.log("Port closed")
+            }
+        }
+
+        TextField {
+            id: inputField
+            width: 200
+            placeholderText: "Enter data to send"
+        }
+
+        Button {
+            text: "Send Data"
+            onClicked: {
+                var data = inputField.text
+                serialPort.write(data)
+                console.log("Data sent:", data)
+            }
+        }
+
+        TextArea {
+            id: receivedText
+            width: 200
+            height: 100
+            readOnly: true
+        }
+
+        Connections {
+            target: serialPort
+            function onDataReceived(data) {
+                receivedText.text += data + "\n"
             }
         }
     }
