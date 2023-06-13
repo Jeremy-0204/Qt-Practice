@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls 2.15
 import SerialPort 1.0
+import SerialPortInfo 1.0
+
 
 ApplicationWindow {
     visible: true
@@ -9,8 +11,12 @@ ApplicationWindow {
     height: 200
     title: "Serial Communication"
 
-    SerialPortWrapper {
+    QSerialPort {
         id: serialPort
+    }
+
+    QSerialPortInfo {
+        id: serialPortInfo
     }
 
     Column {
@@ -20,7 +26,7 @@ ApplicationWindow {
             id: portComboBox
             width: 200
             model: {
-                   var model = serialPort.availablePorts()
+                   var model = serialPortInfo.availablePorts()
 //                   if (model.length > 0) {
 //                       displayText = "Select Port"
 //                   } else {

@@ -28,7 +28,7 @@ void SerialPortWrapper::close()
 void SerialPortWrapper::write(const QString &data)
 {
     m_serialPort.write(data.toUtf8());
-    // handleReadyRead();
+    qDebug() << data;
 }
 
 void SerialPortWrapper::handleReadyRead()
