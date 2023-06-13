@@ -1,4 +1,8 @@
 #include "SerialPortWrapper.h"
+#include <iostream>
+using namespace std;
+#include <QDebug>
+
 
 SerialPortWrapper::SerialPortWrapper(QObject *parent) : QObject(parent)
 {
@@ -24,11 +28,13 @@ void SerialPortWrapper::close()
 void SerialPortWrapper::write(const QString &data)
 {
     m_serialPort.write(data.toUtf8());
+    // handleReadyRead();
 }
 
 void SerialPortWrapper::handleReadyRead()
 {
     QByteArray data = m_serialPort.readAll();
+
     emit dataReceived(QString::fromUtf8(data));
 }
 

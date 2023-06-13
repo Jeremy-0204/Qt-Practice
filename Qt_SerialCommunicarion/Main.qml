@@ -19,8 +19,15 @@ ApplicationWindow {
         ComboBox {
             id: portComboBox
             width: 200
-            model: serialPort.availablePorts()
-            displayText: "Select Port"
+            model: {
+                   var model = serialPort.availablePorts()
+//                   if (model.length > 0) {
+//                       displayText = "Select Port"
+//                   } else {
+//                       displayText = "No Ports Available"
+//                   }
+                   model
+               }
         }
 
         Button {
@@ -67,7 +74,7 @@ ApplicationWindow {
 
         Connections {
             target: serialPort
-            function onDataReceived(data) {
+            function dataReceived(data) {
                 receivedText.text += data + "\n"
             }
         }
