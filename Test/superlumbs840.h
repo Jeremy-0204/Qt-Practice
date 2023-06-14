@@ -12,7 +12,7 @@ class SuperlumBS840 : public QObject
 public:
     explicit SuperlumBS840(QObject *parent = nullptr);
 
-    enum LasorStatus
+    enum ELaserStatus
     {
         PowerOFF,
         PowerON,
@@ -32,6 +32,7 @@ public slots:
 private:
     bool SendPacket(const char* Packet);
     QSerialPort *serial;
+    ELaserStatus mStatus;
 
 
 

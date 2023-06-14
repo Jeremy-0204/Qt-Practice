@@ -5,12 +5,22 @@ SuperlumBS840::SuperlumBS840(QObject *parent)
     : QObject(parent)
 {
     serial = new QSerialPort();
+    ELaserStatus mStatus = ELaserStatus::PowerOFF;
 }
 
 bool SuperlumBS840::PowerOn()
 {
+    // 패킷 생성
+    // "MW\r\n" for PowerOn
 
+    if (SendPacket("MW\r\n"))
+    {
+        mStatus = ELaserStatus::PowerON;
+    }
+
+    return false;
 }
+
 
 bool SuperlumBS840::SendPacket(const char* Packet)
 {
