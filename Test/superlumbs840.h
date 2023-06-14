@@ -26,8 +26,13 @@ public:
     bool LaserOn();
     bool LaserOff();
 
+public slots:
+    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+
 private:
-    bool SendPacket(const char* Packet, QSerialPort &Serial);
+    bool SendPacket(const char* Packet);
+    QSerialPort *serial;
+
 
 
     /* powerOn / powerOff

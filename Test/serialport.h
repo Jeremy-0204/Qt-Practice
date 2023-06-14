@@ -27,7 +27,7 @@ public:
 
 public slots:
     void refreshAvailablePorts();
-    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+    //bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
 signals:
     void availablePortsChanged();
