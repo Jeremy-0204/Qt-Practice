@@ -73,7 +73,7 @@ Window {
                     var selectedParity = parityComboBox.model[parityComboBox.currentIndex]
                     var selectedDataBits = dataBitsComboBox.model[dataBitsComboBox.currentIndex]
                     var selectedStopBits = stopBitsComboBox.model[baudRateComboBox.currentIndex]
-                    serialPort.connectToPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
+                    superlumBS840.connectToPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
                 }
             }
 
