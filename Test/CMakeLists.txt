@@ -10,8 +10,8 @@ qt_standard_project_setup()
 
 qt_add_executable(appTest
     main.cpp
-    serialport.h
-    serialport.cpp
+    serialport.h serialport.cpp
+    superlumbs840.h superlumbs840.cpp
 )
 
 qt_add_qml_module(appTest

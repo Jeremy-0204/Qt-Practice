@@ -54,16 +54,6 @@ QStringList SerialPort::parityOptions() const
     return parityOptions;
 }
 
-//QStringList SerialPort::dataBits() const
-//{
-//    QStringList dataBitsOptions;
-//    dataBitsOptions.append(QString::number(QSerialPort::Data5));
-//    dataBitsOptions.append(QString::number(QSerialPort::Data6));
-//    dataBitsOptions.append(QString::number(QSerialPort::Data7));
-//    dataBitsOptions.append(QString::number(QSerialPort::Data8));
-//    return dataBitsOptions;
-//}
-
 QStringList SerialPort::dataBits() const
 {
     QStringList dataBitsOptions;
