@@ -21,6 +21,18 @@ bool SuperlumBS840::PowerOn()
     return false;
 }
 
+bool SuperlumBS840::PowerOff()
+{
+    // 패킷 생성
+    // "MW\r\n" for PowerOn
+
+    if (SendPacket("MO\r\n"))
+    {
+        mStatus = ELaserStatus::PowerOFF;
+    }
+
+    return false;
+}
 
 bool SuperlumBS840::SendPacket(const char* Packet)
 {
