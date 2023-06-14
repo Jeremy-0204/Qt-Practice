@@ -13,7 +13,14 @@ QStringList SerialPort::availablePorts() const
 
 QStringList SerialPort::baudRates() const
 {
-    return QSerialPortInfo::standardBaudRates();
+    QStringList baudRateOptions;
+
+    const QList<int> baudRates = QSerialPortInfo::standardBaudRates();
+    for (int baudRate : baudRates) {
+        baudRateOptions.append(QString::number(baudRate));
+    }
+
+    return baudRateOptions;
 }
 
 QStringList SerialPort::flowControls() const
@@ -35,6 +42,16 @@ QStringList SerialPort::parityOptions() const
     parityOptions.append("MarkParity");
     return parityOptions;
 }
+
+//QStringList SerialPort::dataBits() const
+//{
+//    QStringList dataBitsOptions;
+//    dataBitsOptions.append(QString::number(QSerialPort::Data5));
+//    dataBitsOptions.append(QString::number(QSerialPort::Data6));
+//    dataBitsOptions.append(QString::number(QSerialPort::Data7));
+//    dataBitsOptions.append(QString::number(QSerialPort::Data8));
+//    return dataBitsOptions;
+//}
 
 QStringList SerialPort::dataBits() const
 {

@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<SerialPort>("CustomTypes", 1, 0, "SerialPort");
+    qmlRegisterType<SerialPort>("SerialPort", 1, 0, "SerialPort");
 
     const QUrl url(QStringLiteral("qrc:/Test/Main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,

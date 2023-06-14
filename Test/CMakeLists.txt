@@ -18,8 +18,6 @@ qt_add_qml_module(appTest
     URI Test
     VERSION 1.0
     QML_FILES Main.qml
-    RESOURCE_PREFIX
-        "/qt/qml"
 )
 
 find_package(Qt6 REQUIRED COMPONENTS SerialPort)
