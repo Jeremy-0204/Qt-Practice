@@ -2,14 +2,33 @@
 #define SUPERLUMBS840_H
 
 #include <QObject>
+#include <QSerialPort>
 
 class SuperlumBS840 : public QObject
 {
     Q_OBJECT
-
+    Q_ENUMS(LasorStatus)
 
 public:
     explicit SuperlumBS840(QObject *parent = nullptr);
+
+    enum LasorStatus
+    {
+        PowerOFF,
+        PowerON,
+        ReadyToFire,
+        Fire,
+        Error
+    };
+
+    bool PowerOn();
+    bool PowerOff();
+    bool LaserOn();
+    bool LaserOff();
+
+private:
+    bool SendPacket(const char* Packet, QSerialPort &Serial);
+
 
     /* powerOn / powerOff
      * LaserOn / LaserOff

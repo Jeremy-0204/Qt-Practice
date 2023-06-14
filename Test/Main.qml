@@ -61,7 +61,59 @@ Window {
                     text: qsTr("SWEEP CONTROL")
                 }
 
-                // 버튼 3개: single tone, single sweep, continuous sweep
+                RowLayout
+                {
+                    // 버튼 3개: single tone, single sweep, continuous sweep
+                    Button {
+                        id: singleToneButton
+                        text: "Single Tone"
+                        width: 150
+                        height: 50
+                        background: Rectangle {
+                            radius: singleToneButton.checked ? 0 : 25
+                            color: singleToneButton.checked ? "steelblue" : "lightgray"
+                        }
+                        onClicked: {
+                            singleToneButton.checked = true
+                            singleSweepButton.checked = false
+                            continuousSweepButton.checked = false
+                        }
+                    }
+
+                    Button {
+                        id: singleSweepButton
+                        text: "Single Sweep"
+                        width: 150
+                        height: 50
+                        background: Rectangle {
+                            radius: singleSweepButton.checked ? 0 : 25
+                            color: singleSweepButton.checked ? "steelblue" : "lightgray"
+                        }
+                        onClicked: {
+                            singleToneButton.checked = false
+                            singleSweepButton.checked = true
+                            continuousSweepButton.checked = false
+                        }
+                    }
+
+                    Button {
+                        id: continuousSweepButton
+                        text: "Continuous Sweep"
+                        width: 150
+                        height: 50
+                        background: Rectangle {
+                            radius: continuousSweepButton.checked ? 0 : 25
+                            color: continuousSweepButton.checked ? "steelblue" : "lightgray"
+                        }
+                        onClicked: {
+                            singleToneButton.checked = false
+                            singleSweepButton.checked = false
+                            continuousSweepButton.checked = true
+                        }
+                    }
+                }
+
+
             }
         }
     }
