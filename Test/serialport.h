@@ -9,6 +9,8 @@ class SerialPort : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QStringList availablePorts READ availablePorts NOTIFY availablePortsChanged)
+    //Q_PROPERTY(QStringList availablePorts READ availablePorts CONSTANT)
+
     Q_PROPERTY(QStringList baudRates READ baudRates CONSTANT)
     Q_PROPERTY(QStringList flowControls READ flowControls CONSTANT)
     Q_PROPERTY(QStringList parityOptions READ parityOptions CONSTANT)
@@ -27,7 +29,7 @@ public:
 
 public slots:
     void refreshAvailablePorts();
-    void connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
 signals:
     void availablePortsChanged();

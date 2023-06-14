@@ -1,4 +1,5 @@
 #include "serialport.h"
+#include "QDebug"
 
 SerialPort::SerialPort(QObject *parent)
     : QObject(parent)
@@ -10,6 +11,16 @@ QStringList SerialPort::availablePorts() const
 {
     return m_availablePorts;
 }
+
+//QStringList SerialPort::availablePorts() const
+//{
+//    QStringList portNames;
+//    QList<QSerialPortInfo> portInfoList = QSerialPortInfo::availablePorts();
+//    for (const QSerialPortInfo& portInfo : portInfoList) {
+//        portNames.append(portInfo.portName());
+//    }
+//    return portNames;
+//}
 
 QStringList SerialPort::baudRates() const
 {
@@ -84,7 +95,7 @@ void SerialPort::refreshAvailablePorts()
     emit availablePortsChanged();
 }
 
-void SerialPort::connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits)
+bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits)
 {
     QSerialPort *serial = new QSerialPort(portName);
 
@@ -102,12 +113,17 @@ void SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
 
     // Stop bits 설정
     serial->setStopBits(static_cast<QSerialPort::StopBits>(stopBits));
+    qDebug() << "CONNECTED CALLED";
 
-    if (serial->open(QIODevice::ReadWrite)) {
-        // 시리얼 포트가 성공적으로 열렸을 때의 로직
-        // 연결된 시리얼 포트 사용 가능
-    } else {
+    if (!serial->open(QIODevice::ReadWrite)) {
+        qDebug() << "FAILED";
         // 시리얼 포트 열기 실패한 경우의 로직
         // 연결에 실패했음을 사용자에게 알릴 수 있습니다.
+        return false;
+    } else {
+        // 시리얼 포트가 성공적으로 열렸을 때의 로직
+        // 연결된 시리얼 포트 사용 가능
+        qDebug() << "CONNECTED";
+        return true;
     }
 }

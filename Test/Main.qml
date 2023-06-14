@@ -17,21 +17,36 @@ Window {
 
     Column {
         spacing: 10
+        anchors.centerIn: parent
 
         Text {
             text: "Available Ports:"
             font.bold: true
         }
 
-        ListView {
+        ComboBox {
+            id: portListView
             width: 180
-            height: 120
-            model: serialPort.availablePorts
-            delegate: Text {
-                text: modelData
-                font.pixelSize: 12
-            }
+            model: {
+                   var model = serialPort.availablePorts
+//                   if (model.length > 0) {
+//                       displayText = "Select Port"
+//                   } else {
+//                       displayText = "No Ports Available"
+//                   }
+                   model
+               }
         }
+//        ListView {
+//            width: 180
+//            height: 120
+//            id: portListView
+//            model: serialPort.availablePorts
+//            delegate: Text {
+//                text: modelData
+//                font.pixelSize: 12
+//            }
+//        }
 
         ComboBox {
             id: baudRateComboBox
@@ -68,22 +83,62 @@ Window {
             currentIndex: 0
         }
 
-        Button {
-            text: "Connect"
-            onClicked: {
-                var selectedPort = portListView.model.get(portListView.currentIndex)
-                var selectedBaudRate = baudRateComboBox.model.get(baudRateComboBox.currentIndex)
-                var selectedFlowControl = flowControlComboBox.model.get(flowControlComboBox.currentIndex)
-                var selectedParity = parityComboBox.model.get(parityComboBox.currentIndex)
-                var selectedDataBits = dataBitsComboBox.model.get(dataBitsComboBox.currentIndex)
-                var selectedStopBits = stopBitsComboBox.model.get(stopBitsComboBox.currentIndex)
-                serialPort.connectToPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
-            }
-        }
+        Row {
+            spacing: 10
+            anchors.horizontalCenter: parent
 
-        Button {
-            text: "Refresh"
-            onClicked: serialPort.refreshAvailablePorts()
+            Button {
+                text: "Connect"
+                onClicked: {
+                    var selectedPort = serialPort.availablePorts[portListView.currentIndex]
+                    var selectedBaudRate = baudRateComboBox.model[baudRateComboBox.currentIndex]
+                    var selectedFlowControl = flowControlComboBox.model[flowControlComboBox.currentIndex]
+                    var selectedParity = parityComboBox.model[parityComboBox.currentIndex]
+                    var selectedDataBits = dataBitsComboBox.model[dataBitsComboBox.currentIndex]
+                    var selectedStopBits = stopBitsComboBox.model[baudRateComboBox.currentIndex]
+                    serialPort.connectToPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
+                }
+            }
+
+            Button {
+                text: "Refresh"
+                onClicked: serialPort.refreshAvailablePorts()
+            }
+
+//            Button {
+//                text: "SINGLE TONE"
+//                checkable: true  // 버튼을 선택 가능한 상태로 설정
+//                checked: false  // 버튼을 선택되지 않은 상태로 설정 (들어가지 않은 상태)
+
+//                // 버튼이 선택되었을 때의 스타일
+//                background: Rectangle {
+//                    color: "#00CC00"  // 선택된 상태의 배경색
+//                    radius: 5  // 볼록한 모서리를 위한 반지름 값
+//                }
+
+//                // 버튼이 선택되지 않았을 때의 스타일
+//                indicator: Rectangle {
+//                    color: "#FFFFFF"  // 선택되지 않은 상태의 배경색
+//                    radius: 5  // 볼록한 모서리를 위한 반지름 값
+//                }
+
+//                onClicked: {
+//                    // 버튼이 클릭되었을 때의 동작
+//                    if (checked) {
+//                        // 버튼이 선택된 상태일 때의 로직
+//                        // 들어가는 동작 수행
+//                    } else {
+//                        // 버튼이 선택되지 않은 상태일 때의 로직
+//                        // 들어가지 않는 동작 수행
+//                    }
+//                }
+//            }
+
+
+
+
+
+
         }
     }
 }
