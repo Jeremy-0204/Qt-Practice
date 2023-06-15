@@ -57,7 +57,9 @@ Window {
 
             ColumnLayout
             {
-                spacing: 20
+                anchors.verticalCenterOffset: -106
+                anchors.horizontalCenterOffset: 0
+                spacing: 0
                 anchors.centerIn: parent
 
                 Text {
