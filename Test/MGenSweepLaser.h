@@ -45,26 +45,16 @@ public:
     // 그 외 필요한 함수
     bool isConnected() const;
     ELaserStatusMode isLaserOn() const;
-    ESuperlumLaserControlMode GetControlMode() const;
 
 protected:
     bool mbConnected = false;
     ELaserStatusMode mStatusMode = ELaserStatusMode :: PowerOff;
     ESuperlumLaserSweepMode mSweepMode = ESuperlumLaserSweepMode :: ContinuousSweep;
-    ESuperlumLaserControlMode mControlMode = ESuperlumLaserControlMode :: USB
     float mSingleToneWaveLength = 0.0f;
     float mStartWaveLength = 0.0f;
     float mStopWaveLength = 0.0f;
     float mSweepSpeed = 0.0f;
     int mPauseTime = 0;
-
-
-
-
 };
-
-
-
-
 
 MGEN_NAMESPACE_END
