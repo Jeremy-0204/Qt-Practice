@@ -7,7 +7,8 @@
 class SuperlumBS840 : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(LasorStatus)
+    Q_ENUMS(ELasorStatus)
+    Q_ENUMS(ELasorSweepMode)
 
 public:
     explicit SuperlumBS840(QObject *parent = nullptr);
@@ -21,10 +22,24 @@ public:
         Error
     };
 
+    enum ELaserSweepMode
+    {
+        SingleTone,
+        SingleSweep,
+        ContinuousSweep
+    };
+
     bool PowerOn();
     bool PowerOff();
     bool LaserOn();
     bool LaserOff();
+
+    bool SetSweepMode(ELaserSweepMode SweepMode);
+    bool SetSingleWaveLength(const float WaveLength);
+    bool SetStartWaveLength(const float WaveLength);
+    bool SetStopWaveLength(const float WaveLength);
+    bool SetSweepSpeed(const float WaveLength);
+    bool SetPauseTime(const float WaveLength);
 
 public slots:
     bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
@@ -33,52 +48,7 @@ private:
     bool SendPacket(const char* Packet);
     QSerialPort *serial;
     ELaserStatus mStatus;
-
-
-
-    /* powerOn / powerOff
-     * LaserOn / LaserOff
-     * ==========================
-     *
-     * SWEEP CONTROL
-     * SINGLE TONE / SINGLE SWEEP / CONTINOUS SWEEP
-     *
-     * ==========================
-     *
-     * COMMON
-     *
-     * Full Tuning Range:   805nm ~ 880nm
-     *
-     * AOTP TEC
-     * Laser TEC
-     * Sweep
-     *
-     * Output
-     *
-     * ==========================
-     *
-     * SINGLE TONE
-     * Light wavelength
-     *
-     * ==========================
-     *
-     * SINGLE SWEEP
-     * Start Wavelength, Stop Wavelength
-     * Sweep Speed
-     * Sweep Time
-     *
-     * ==========================
-     *
-     * CONTINUOUS SWEEP
-     * Wavelength 1, Wavelength 2
-     * Sweep Speed
-     * Pause
-     * Sweep Time
-     *
-     * =========================
-     */
-
-
+    ELaserSweepMode mSweepMode;
 };
 
 #endif // SUPERLUMBS840_H

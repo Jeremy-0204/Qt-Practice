@@ -1,38 +1,68 @@
 #include "superlumbs840.h"
 #include "QDebug"
+#include <string>
 
 SuperlumBS840::SuperlumBS840(QObject *parent)
     : QObject(parent)
 {
     serial = new QSerialPort();
-    ELaserStatus mStatus = ELaserStatus::PowerOFF;
+    mStatus = ELaserStatus::PowerOFF;
+    mSweepMode = ELaserSweepMode::SingleTone;
 }
 
 bool SuperlumBS840::PowerOn()
 {
-    // 패킷 생성
-    // "MW\r\n" for PowerOn
-
     if (SendPacket("MW\r\n"))
     {
         mStatus = ELaserStatus::PowerON;
     }
-
     return false;
 }
 
 bool SuperlumBS840::PowerOff()
 {
-    // 패킷 생성
-    // "MW\r\n" for PowerOn
-
     if (SendPacket("MO\r\n"))
     {
         mStatus = ELaserStatus::PowerOFF;
     }
-
     return false;
 }
+
+bool SuperlumBS840::SetSweepMode(ELaserSweepMode SweepMode)
+{
+    if (SweepMode == mSweepMode)
+    {
+        return true;
+    }
+
+    QString Packet = "";
+
+    switch(SweepMode)
+    {
+    case(ELaserSweepMode::SingleTone): Packet ="MT\r\n";
+    case(ELaserSweepMode::SingleSweep): Packet ="MY\r\n";
+    case(ELaserSweepMode::ContinuousSweep): Packet ="MZ\r\n";
+    }
+
+    if (SendPacket(Packet.toStdString().c_str()))
+    {
+        mSweepMode == SweepMode;
+        return true;
+    }
+    return false;
+}
+
+/*
+ *
+ *
+ *
+ */
+
+
+
+
+
+
 
 bool SuperlumBS840::SendPacket(const char* Packet)
 {
