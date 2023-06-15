@@ -17,11 +17,14 @@ qt_add_executable(appTest
 qt_add_qml_module(appTest
     URI Test
     VERSION 1.0
-    QML_FILES Main.qml settings.qml
+    QML_FILES Main.qml settings.qml singletone.qml
 )
 
 find_package(Qt6 REQUIRED COMPONENTS SerialPort)
 target_link_libraries(appTest PRIVATE Qt6::SerialPort)
+
+find_package(Qt6 COMPONENTS Core Quick QuickControls2 REQUIRED)
+target_link_libraries(appTest PRIVATE Qt6::Core Qt6::Quick Qt6::QuickControls2)
 
 set_target_properties(appTest PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

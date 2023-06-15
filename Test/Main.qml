@@ -21,7 +21,6 @@ Window {
 
     Loader { id: mainLoader }
 
-
     RowLayout
     {
         spacing: 0
@@ -55,11 +54,20 @@ Window {
             Layout.preferredWidth : windows.width*3/4
             Layout.preferredHeight : windows.height
 
+            Loader
+            {
+                id: sweepControlLoader
+                x: 0
+                y: 75
+                width: windows.width*3/4
+                height: parent.height*3/4
+            }
+
             ColumnLayout
             {
                 anchors.verticalCenterOffset: -106
                 anchors.horizontalCenterOffset: 0
-                spacing: 0
+                spacing: 5
                 anchors.centerIn: parent
 
                 Text {
@@ -85,6 +93,9 @@ Window {
                            singleToneButton.checked = true
                            singleSweepButton.checked = false
                            continuousSweepButton.checked = false
+
+                           sweepControlLoader.source = ""
+                           sweepControlLoader.source = "singletone.qml"
                        }
                    }
 
@@ -102,6 +113,8 @@ Window {
                            singleToneButton.checked = false
                            singleSweepButton.checked = true
                            continuousSweepButton.checked = false
+
+                           sweepControlLoader.source = ""
                        }
                    }
 
@@ -119,6 +132,8 @@ Window {
                            singleToneButton.checked = false
                            singleSweepButton.checked = false
                            continuousSweepButton.checked = true
+
+                           sweepControlLoader.source = ""
                        }
                    }
                 }
