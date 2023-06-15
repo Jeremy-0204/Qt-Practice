@@ -17,7 +17,7 @@ qt_add_executable(appTest
 qt_add_qml_module(appTest
     URI Test
     VERSION 1.0
-    QML_FILES Main.qml settings.qml singletone.qml singlesweep.qml
+    QML_FILES Main.qml settings.qml singletone.qml singlesweep.qml continuoussweep.qml
 )
 
 find_package(Qt6 REQUIRED COMPONENTS SerialPort)

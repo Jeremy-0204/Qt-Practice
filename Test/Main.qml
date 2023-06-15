@@ -128,6 +128,7 @@ Window {
                            continuousSweepButton.checked = true
 
                            sweepControlLoader.source = ""
+                           sweepControlLoader.source = "continuoussweep.qml"
                        }
                     }
                 }
