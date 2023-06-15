@@ -35,9 +35,14 @@ int MGenSweepLaser :: PauseTime() const
     return mPauseTime;
 }
 
+bool MGenSweepLaser :: isConnected() const
+{
+    return mbConnected;
+}
 
-
-
-
+ELaserStatusMode MGenSweepLaser :: isLaserOn() const
+{
+    return mStatusMode;
+}
 
 MGEN_NAMESPACE_END
