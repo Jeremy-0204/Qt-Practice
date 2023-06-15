@@ -54,14 +54,6 @@ Window {
             Layout.preferredWidth : windows.width*3/4
             Layout.preferredHeight : windows.height
 
-            Loader
-            {
-                id: sweepControlLoader
-                x: 0
-                y: 75
-                width: windows.width*3/4
-                height: parent.height*3/4
-            }
 
             ColumnLayout
             {
@@ -78,6 +70,7 @@ Window {
 
                 RowLayout
                 {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     // 버튼 3개: single tone, single sweep, continuous sweep
                    Button {
                        id: singleToneButton
@@ -135,8 +128,18 @@ Window {
 
                            sweepControlLoader.source = ""
                        }
-                   }
+                    }
                 }
+
+                Loader
+                {
+                    id: sweepControlLoader
+                    x: 0
+                    y: 75
+                    width: windows.width*3/4
+                    height: parent.height*3/4
+                }
+
 
 
             }
