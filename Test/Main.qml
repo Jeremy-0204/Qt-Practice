@@ -108,6 +108,7 @@ Window {
                            continuousSweepButton.checked = false
 
                            sweepControlLoader.source = ""
+                           sweepControlLoader.source = "singlesweep.qml"
                        }
                    }
 
