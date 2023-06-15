@@ -37,7 +37,7 @@ MGEN_NAMESPACE_START
     {
         SingleTone = 0,
         SingleSweep = 1,
-        ContinuousSwwp = 2
+        ContinuousSweep = 2
     };
 
     struct SuperlumLaserParam

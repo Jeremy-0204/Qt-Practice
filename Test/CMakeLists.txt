@@ -10,7 +10,8 @@ qt_standard_project_setup()
 
 qt_add_executable(appTest
     main.cpp
-    MGenDeviceDef.h MGenNamespaceDef.h MGenSweepLaser.h
+    MGenDeviceDef.h MGenNamespaceDef.h
+    MGenSweepLaser.h MGenSweepLaser.cpp
     serialport.h serialport.cpp
     superlumbs840.h superlumbs840.cpp
 )
