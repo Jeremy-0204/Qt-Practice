@@ -46,12 +46,16 @@ bool SuperlumBS840::SetSweepMode(ELaserSweepMode SweepMode)
 
     if (SendPacket(Packet.toStdString().c_str()))
     {
-        mSweepMode == SweepMode;
+        mSweepMode = SweepMode;
         return true;
     }
     return false;
 }
 
+bool SuperlumBS840::SetSingleWaveLength(const float WaveLength)
+{
+
+}
 /*
  *
  *

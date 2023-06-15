@@ -6,9 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-//    qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
-//    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
-
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
