@@ -1,54 +1,51 @@
-#ifndef SUPERLUMBS840_H
-#define SUPERLUMBS840_H
+#pragma once
 
-#include <QObject>
-#include <QSerialPort>
+#include <MGenSweepLaser.h>
+#include <serialport.h>
+MGEN_NAMESPACE_START
 
-class SuperlumBS840 : public QObject
+
+class SuperlumBS840 : public MGenSweepLaser
 {
     Q_OBJECT
-    Q_ENUMS(ELasorStatus)
-    Q_ENUMS(ELasorSweepMode)
-
 public:
     explicit SuperlumBS840(QObject *parent = nullptr);
+    virtual ~SuperlumBS840();
 
-    enum ELaserStatus
-    {
-        PowerOFF,
-        PowerON,
-        ReadyToFire,
-        Fire,
-        Error
-    };
+    //virtual bool Connect() override;
+    virtual bool connect(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+//    virtual bool Disconnect() override;
 
-    enum ELaserSweepMode
-    {
-        SingleTone,
-        SingleSweep,
-        ContinuousSweep
-    };
+//    virtual bool PowerOn() override;
+//    virtual bool PowerOff() override;
 
-    bool PowerOn();
-    bool PowerOff();
-    bool LaserOn();
-    bool LaserOff();
+//    virtual bool LaserOn() override;
+//    virtual bool LaserOff() override;
 
-    bool SetSweepMode(ELaserSweepMode SweepMode);
-    bool SetSingleWaveLength(const float WaveLength);
-    bool SetStartWaveLength(const float WaveLength);
-    bool SetStopWaveLength(const float WaveLength);
-    bool SetSweepSpeed(const float WaveLength);
-    bool SetPauseTime(const float WaveLength);
+//    // Q_PROPERTY 변수들에 대한 Setter 함수
+//    virtual bool setMSweepMode(ESuperlumLaserSweepMode SweepMode) override;
+//    virtual bool setMSingleToneWaveLength(float SingleToneWaveLength) override;
+//    virtual bool setMStartWaveLength(float StartWaveLength) override;
+//    virtual bool setMStopWaveLength(float StopToneWaveLength) override;
+//    virtual bool setMSweepSpeed(float SweepSpeed) override;
+//    virtual bool setMPauseTime(float PauseTime) override;
 
 public slots:
-    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+//    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
 private:
-    bool SendPacket(const char* Packet);
-    QSerialPort *serial;
-    ELaserStatus mStatus;
-    ELaserSweepMode mSweepMode;
+//    bool SendPacket(const char* Packet);
+
+//    bool RequestDeviceName();
+//    bool RequestDeviceStatus();
+//    bool RequestDeviceParam();
+
+
+
+
+private:
+    SerialPort mSerialPort;
+    SuperlumLaserParam mSuperlumParam;
 };
 
-#endif // SUPERLUMBS840_H
+MGEN_NAMESPACE_END

@@ -5,6 +5,8 @@ SerialPort::SerialPort(QObject *parent)
     : QObject(parent)
 {
     refreshAvailablePorts();
+    connect(&mSerial, &QSerialPort::readyRead, this, &SerialPort::handleReadyRead);
+
 }
 
 QStringList SerialPort::availablePorts() const
@@ -73,4 +75,43 @@ void SerialPort::refreshAvailablePorts()
     }
 
     emit availablePortsChanged();
+}
+
+bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits)
+{
+    //    QSerialPort *serial = new QSerialPort(portName);
+
+    // Baud rate 설정
+    mSerial.setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate));
+
+    // Flow control 설정
+    mSerial.setFlowControl(static_cast<QSerialPort::FlowControl>(flowControl));
+
+    // Parity 설정
+    mSerial.setParity(static_cast<QSerialPort::Parity>(parity));
+
+    // Data bits 설정
+    mSerial.setDataBits(static_cast<QSerialPort::DataBits>(dataBits));
+
+    // Stop bits 설정
+    mSerial.setStopBits(static_cast<QSerialPort::StopBits>(stopBits));
+    qDebug() << "CONNECTED CALLED";
+
+    if (!mSerial.open(QIODevice::ReadWrite)) {
+        qDebug() << "FAILED";
+        // 시리얼 포트 열기 실패한 경우의 로직
+        // 연결에 실패했음을 사용자에게 알릴 수 있습니다.
+        return false;
+    } else {
+        // 시리얼 포트가 성공적으로 열렸을 때의 로직
+        // 연결된 시리얼 포트 사용 가능
+        qDebug() << "CONNECTED";
+        return true;
+    }
+}
+
+void SerialPort :: handleReadyRead()
+{
+    mDataRead = mSerial.readAll();
+    qDebug() << mDataRead;
 }

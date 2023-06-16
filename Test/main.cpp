@@ -1,14 +1,17 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QQuickStyle>
-#include "SerialPort.h"
+#include <QQmlEngine>
+#include "serialport.h"
 #include "superlumbs840.h"
+
+MGEN_NAMESPACE_USE;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    //SuperlumBS840 mySuperlumBS840;
 
     qmlRegisterType<SerialPort>("SerialPort", 1, 0, "SerialPort");
     qmlRegisterType<SuperlumBS840>("SuperlumBS840", 1, 0, "SuperlumBS840");

@@ -17,7 +17,6 @@ class SerialPort : public QObject
 
 public:
     explicit SerialPort(QObject *parent = nullptr);
-
     QStringList availablePorts() const;
     QStringList baudRates() const;
     QStringList flowControls() const;
@@ -25,15 +24,19 @@ public:
     QStringList dataBits() const;
     QStringList stopBits() const;
 
+
+
 public slots:
     void refreshAvailablePorts();
-    //bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
-
+    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+    void handleReadyRead();
 signals:
     void availablePortsChanged();
 
 private:
     QStringList m_availablePorts;
+    QSerialPort mSerial;
+    QByteArray mDataRead;
 };
 
 #endif // SERIALPORT_H

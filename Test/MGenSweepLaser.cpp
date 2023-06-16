@@ -5,6 +5,9 @@ MGenSweepLaser :: MGenSweepLaser(QObject *parent)
     : QObject(parent)
 {}
 
+MGenSweepLaser :: ~MGenSweepLaser()
+{}
+
 ESuperlumLaserSweepMode MGenSweepLaser :: SweepMode() const
 {
     return mSweepMode;

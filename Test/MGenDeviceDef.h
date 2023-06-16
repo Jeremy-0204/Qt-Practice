@@ -6,7 +6,7 @@ MGEN_NAMESPACE_START
 #pragma region LASER_DEFINTION
 
     enum ELaserType{
-        SuperlumBS840
+        superlumBS840
     };
 
     enum ELaserStatusMode // 매뉴얼에는 없던데 어떤 기준으로 하셨는지 궁금함, NexMet 참조함

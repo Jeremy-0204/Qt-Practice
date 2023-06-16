@@ -25,9 +25,6 @@ qt_add_qml_module(appTest
 find_package(Qt6 REQUIRED COMPONENTS SerialPort)
 target_link_libraries(appTest PRIVATE Qt6::SerialPort)
 
-find_package(Qt6 COMPONENTS Core Quick QuickControls2 REQUIRED)
-target_link_libraries(appTest PRIVATE Qt6::Core Qt6::Quick Qt6::QuickControls2)
-
 set_target_properties(appTest PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
