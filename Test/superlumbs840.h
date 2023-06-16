@@ -12,9 +12,10 @@ public:
     explicit SuperlumBS840(QObject *parent = nullptr);
     virtual ~SuperlumBS840();
 
+
+    Q_INVOKABLE virtual bool connect(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
     //virtual bool Connect() override;
-    virtual bool connect(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
-//    virtual bool Disconnect() override;
+    //    virtual bool Disconnect() override;
 
 //    virtual bool PowerOn() override;
 //    virtual bool PowerOff() override;
@@ -30,18 +31,15 @@ public:
 //    virtual bool setMSweepSpeed(float SweepSpeed) override;
 //    virtual bool setMPauseTime(float PauseTime) override;
 
-public slots:
+//public slots:
 //    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
-private:
+//private:
 //    bool SendPacket(const char* Packet);
 
 //    bool RequestDeviceName();
 //    bool RequestDeviceStatus();
 //    bool RequestDeviceParam();
-
-
-
 
 private:
     SerialPort mSerialPort;
