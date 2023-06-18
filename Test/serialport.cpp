@@ -125,6 +125,20 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     }
 }
 
+bool SerialPort :: Write(const char* Packet)
+{
+    // -1 if failed, else returns number of bytes sent
+    qint64 bytesWritten = mSerial.write(Packet);
+
+    if (bytesWritten != sizeof(Packet) || bytesWritten == -1)
+    {
+        return false;
+    }
+
+    return true;
+
+}
+
 void SerialPort :: handleReadyRead()
 {
     mDataRead = mSerial.readAll();

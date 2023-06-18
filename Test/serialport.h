@@ -24,6 +24,8 @@ public:
     QStringList dataBits() const;
     QStringList stopBits() const;
 
+    bool Write(const char* Packet);
+
 
 
 public slots:

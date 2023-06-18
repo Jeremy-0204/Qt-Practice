@@ -14,4 +14,6 @@ bool SuperlumBS840 :: connect(const QString &portName, int baudRate, int flowCon
     return mbConnected;
 }
 
+
+
 MGEN_NAMESPACE_END
