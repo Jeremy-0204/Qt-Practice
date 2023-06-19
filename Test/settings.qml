@@ -81,6 +81,12 @@ Window {
                 text: "Refresh"
                 onClicked: serialPort.refreshAvailablePorts()
             }
+
+
+            Button {
+                text: "Close"
+                onClicked: serialPort.closePort()
+            }
         }
     }
 

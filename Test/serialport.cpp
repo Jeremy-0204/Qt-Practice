@@ -125,6 +125,12 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     }
 }
 
+bool SerialPort :: closePort()
+{
+    mSerial.close();
+    qDebug() << "PORT CLOSED";
+}
+
 bool SerialPort :: Write(const char* Packet)
 {
     // -1 if failed, else returns number of bytes sent
