@@ -24,11 +24,11 @@ public:
 //    Q_INVOKABLE virtual bool powerOn();
 //    Q_INVOKABLE virtual bool powerOff();
 
-    bool RequestDeviceName();
+//    bool RequestDeviceName();
 
-    bool RequestDeviceStatus();
+//    bool RequestDeviceStatus();
 
-    bool RequestDeviceParam();
+//    bool RequestDeviceParam();
 
 //    virtual bool LaserOn() override;
 //    virtual bool LaserOff() override;
@@ -45,12 +45,16 @@ public slots:
     void handleReadyRead();
 //    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
-//private:
+private:
 //    bool SendPacket(const char* Packet);
 
-//    bool RequestDeviceName();
-//    bool RequestDeviceStatus();
-//    bool RequestDeviceParam();
+    bool RequestDeviceName();
+    bool RequestDeviceStatus();
+    bool RequestDeviceParam();
+
+    void ParseDataI(const char* Data, const int Size);
+    void ParseDataM(const char* Data, const int Size);
+    void ParseDataP(const char* Data, const int Size);
 
 private:
     SerialPort mSerialPort;

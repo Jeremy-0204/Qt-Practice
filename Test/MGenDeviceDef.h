@@ -52,6 +52,7 @@ MGEN_NAMESPACE_START
         // 1.2 Read Device Status, Set Device Operation Mode - READ, WRITE
         // e.g. "M\r\n"         – For READ operation
         //      "M[CMD]\r\n     – For SET operation
+        ELaserStatusMode StatusMode = ELaserStatusMode :: PowerOff;
         ESuperlumLaserControlMode ControlMode = ESuperlumLaserControlMode :: Local;
         ESuperlumLaserSweepMode SweepMode = ESuperlumLaserSweepMode :: SingleTone;
         ESuperlumLaserPowerMode PowerMode = ESuperlumLaserPowerMode :: Shutdown;
@@ -81,11 +82,11 @@ MGEN_NAMESPACE_START
 
         // [PN] : 1X
         char SerialNumber[128] = { 0, };
-        float MinWavelength = 0;
+        float MinWaveLength = 0;
         float MaxWaveLength = 0;
 
         // [PN] : 2X
-        char OffModeData[128] = { 0, };
+        int OffModeData = 0;
         int SweepTime = 0;
         int SweepDirection = 0;
     };
