@@ -24,6 +24,9 @@ public:
     QStringList dataBits() const;
     QStringList stopBits() const;
 
+    QSerialPort *mSerial = nullptr;
+
+
 
 public slots:
     void refreshAvailablePorts();
@@ -38,7 +41,6 @@ signals:
 
 private:
     QStringList m_availablePorts;
-    QSerialPort *mSerial = nullptr;
     QByteArray mDataRead;
 };
 

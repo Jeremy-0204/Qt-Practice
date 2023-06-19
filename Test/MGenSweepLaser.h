@@ -20,7 +20,9 @@ public:
     virtual ~MGenSweepLaser();
 
     //virtual bool connect() = 0;
-    virtual bool connect(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits) = 0;
+    virtual bool connectPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits) = 0;
+    virtual bool close() = 0;
+    virtual bool write() = 0;
 
     //virtual bool PowerOn() = 0;
     //virtual bool PowerOff() = 0;

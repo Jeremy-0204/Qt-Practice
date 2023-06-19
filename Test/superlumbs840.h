@@ -13,9 +13,10 @@ public:
     virtual ~SuperlumBS840();
 
 
-    Q_INVOKABLE virtual bool connect(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
-    Q_INVOKABLE bool close();
-    Q_INVOKABLE bool write();
+    Q_INVOKABLE virtual bool connectPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+
+    Q_INVOKABLE virtual bool close();
+    Q_INVOKABLE virtual bool write();
 
     //virtual bool Connect() override;
     //    virtual bool Disconnect() override;
