@@ -85,7 +85,12 @@ Window {
 
             Button {
                 text: "Close"
-                onClicked: serialPort.closePort()
+                onClicked: superlumBS840.close()
+            }
+
+            Button {
+                text: "Write"
+                onClicked: superlumBS840.write()
             }
         }
     }

@@ -24,14 +24,13 @@ public:
     QStringList dataBits() const;
     QStringList stopBits() const;
 
-    bool Write(const char* Packet);
-
-
 
 public slots:
     void refreshAvailablePorts();
     bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
     bool closePort();
+    //bool write(const char* Packet);
+    bool writePacket();
     void handleReadyRead();
 
 signals:
@@ -39,7 +38,7 @@ signals:
 
 private:
     QStringList m_availablePorts;
-    QSerialPort mSerial;
+    QSerialPort *mSerial = nullptr;
     QByteArray mDataRead;
 };
 

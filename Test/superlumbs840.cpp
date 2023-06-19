@@ -14,6 +14,17 @@ bool SuperlumBS840 :: connect(const QString &portName, int baudRate, int flowCon
     return mbConnected;
 }
 
+bool SuperlumBS840 :: close()
+{
+    mbConnected = mSerialPort.closePort();
+    return mbConnected;
+}
+
+bool SuperlumBS840 :: write()
+{
+    mbWritten = mSerialPort.writePacket();
+    return mbWritten;
+}
 
 
 MGEN_NAMESPACE_END

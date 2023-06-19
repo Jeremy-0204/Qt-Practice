@@ -50,6 +50,7 @@ public:
 
 protected:
     bool mbConnected = false;
+    bool mbWritten = false;
     ELaserStatusMode mStatusMode = ELaserStatusMode :: PowerOff;
     ESuperlumLaserSweepMode mSweepMode = ESuperlumLaserSweepMode :: ContinuousSweep;
     float mSingleToneWaveLength = 0.0f;
