@@ -6,7 +6,7 @@ SerialPort::SerialPort(QObject *parent)
 {
     // QSerialPort 객체 초기화
     refreshAvailablePorts();
-    connect(mSerial, &QSerialPort::readyRead, this, &SerialPort::handleReadyRead);
+    //connect(mSerial, &QSerialPort::readyRead, this, &SerialPort::handleReadyRead);
 
 }
 
@@ -166,16 +166,4 @@ bool SerialPort :: writePacket(const QString &Packet)
 
     return true;
 
-}
-
-//void SerialPort :: readPacket()
-//{
-//    mDataRead = mSerial->readAll();
-//    qDebug() << mDataRead;
-//}
-
-void SerialPort :: handleReadyRead()
-{
-    mDataRead = mSerial->readAll();
-    qDebug() << mDataRead;
 }

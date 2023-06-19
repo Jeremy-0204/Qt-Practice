@@ -1,8 +1,10 @@
 #include "superlumbs840.h"
 MGEN_NAMESPACE_START
 
-SuperlumBS840 :: SuperlumBS840(QObject *parent) : MGenSweepLaser(parent)
-{}
+SuperlumBS840 :: SuperlumBS840(QObject *parent) : MGenSweepLaser(parent), mSerialPort()
+{
+    connect(mSerialPort.mSerial, &QSerialPort::readyRead, this, &SuperlumBS840::handleReadyRead);
+}
 
 
 SuperlumBS840 :: ~SuperlumBS840()
@@ -62,6 +64,13 @@ bool SuperlumBS840::RequestDeviceParam()
         sendPacket("P24\r\n") &&
         sendPacket("P25\r\n") &&
         sendPacket("P26\r\n"));
+}
+
+
+void SuperlumBS840 :: handleReadyRead()
+{
+    mDataRead = mSerialPort.mSerial->readAll();
+    qDebug() << mDataRead;
 }
 
 MGEN_NAMESPACE_END

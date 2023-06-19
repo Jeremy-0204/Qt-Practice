@@ -41,7 +41,8 @@ public:
 //    virtual bool setMSweepSpeed(float SweepSpeed) override;
 //    virtual bool setMPauseTime(float PauseTime) override;
 
-//public slots:
+public slots:
+    void handleReadyRead();
 //    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
 //private:
@@ -54,6 +55,7 @@ public:
 private:
     SerialPort mSerialPort;
     SuperlumLaserParam mSuperlumParam;
+    QByteArray mDataRead;
 };
 
 MGEN_NAMESPACE_END

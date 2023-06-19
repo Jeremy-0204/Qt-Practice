@@ -26,21 +26,17 @@ public:
 
     QSerialPort *mSerial = nullptr;
 
-    //void readPacket();
-
 public slots:
     void refreshAvailablePorts();
     bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
     bool closePort();
     bool writePacket(const QString &Packet);
-    void handleReadyRead();
 
 signals:
     void availablePortsChanged();
 
 private:
     QStringList m_availablePorts;
-    QByteArray mDataRead;
 };
 
 #endif // SERIALPORT_H
