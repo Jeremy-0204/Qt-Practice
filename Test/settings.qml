@@ -11,6 +11,13 @@ Window {
         spacing: 10
         anchors.centerIn: parent
 
+        QtObject {
+            id: qml
+            function toUtf8(str) {
+                return str.toUtf8()
+            }
+        }
+
         Text {
             text: "Available Ports:"
             font.bold: true
@@ -90,7 +97,8 @@ Window {
 
             Button {
                 text: "Write"
-                onClicked: superlumBS840.write()
+                onClicked:
+                    superlumBS840.sendPacket("Hello, world!")
             }
         }
     }

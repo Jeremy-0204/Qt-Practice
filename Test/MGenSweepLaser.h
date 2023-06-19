@@ -22,8 +22,7 @@ public:
     //virtual bool connect() = 0;
     virtual bool connectPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits) = 0;
     virtual bool close() = 0;
-    virtual bool write() = 0;
-
+    virtual bool sendPacket(const QString &Packet) = 0;
     //virtual bool PowerOn() = 0;
     //virtual bool PowerOff() = 0;
 
@@ -53,6 +52,7 @@ public:
 protected:
     bool mbConnected = false;
     bool mbWritten = false;
+    bool mbPowerOn = false;
     ELaserStatusMode mStatusMode = ELaserStatusMode :: PowerOff;
     ESuperlumLaserSweepMode mSweepMode = ESuperlumLaserSweepMode :: ContinuousSweep;
     float mSingleToneWaveLength = 0.0f;

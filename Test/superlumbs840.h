@@ -2,6 +2,7 @@
 
 #include <MGenSweepLaser.h>
 #include <serialport.h>
+#include <QDebug>
 MGEN_NAMESPACE_START
 
 
@@ -14,15 +15,20 @@ public:
 
 
     Q_INVOKABLE virtual bool connectPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
-
-    Q_INVOKABLE virtual bool close();
-    Q_INVOKABLE virtual bool write();
+    Q_INVOKABLE bool close();
+    Q_INVOKABLE bool sendPacket(const QString &Packet);
 
     //virtual bool Connect() override;
-    //    virtual bool Disconnect() override;
+    //virtual bool Disconnect() override;
 
-//    virtual bool PowerOn() override;
-//    virtual bool PowerOff() override;
+//    Q_INVOKABLE virtual bool powerOn();
+//    Q_INVOKABLE virtual bool powerOff();
+
+    bool RequestDeviceName();
+
+    bool RequestDeviceStatus();
+
+    bool RequestDeviceParam();
 
 //    virtual bool LaserOn() override;
 //    virtual bool LaserOff() override;

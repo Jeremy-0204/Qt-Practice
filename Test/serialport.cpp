@@ -140,15 +140,18 @@ bool SerialPort :: closePort()
 
 }
 
-bool SerialPort :: writePacket()
+bool SerialPort :: writePacket(const QString &Packet)
 {
-    const char* Packet = "THIS MESSAGE IS FROM PORT";
+    //const char* Packet = "THIS MESSAGE IS FROM PORT ";
     // -1 if failed, else returns number of bytes sent
     qint64 bytesWritten;
 
+    const char * cstr = Packet.toUtf8().constData();
+
     if (mSerial->isOpen()){
-        bytesWritten = mSerial->write(Packet);
+        bytesWritten = mSerial->write(cstr);
         qDebug() << "PORT IS CURRENTLY OPENED";
+        qDebug() << bytesWritten << " " << sizeof(cstr);
     }
 
     else
@@ -156,7 +159,7 @@ bool SerialPort :: writePacket()
         qDebug() << "PORT IS NOT OPENED";
     }
 
-    if (bytesWritten != sizeof(Packet) || bytesWritten == -1)
+    if (/*bytesWritten != sizeof(cstr) || */ bytesWritten == -1)
     {
         return false;
     }
@@ -164,6 +167,12 @@ bool SerialPort :: writePacket()
     return true;
 
 }
+
+//void SerialPort :: readPacket()
+//{
+//    mDataRead = mSerial->readAll();
+//    qDebug() << mDataRead;
+//}
 
 void SerialPort :: handleReadyRead()
 {
