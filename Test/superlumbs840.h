@@ -19,11 +19,11 @@ public:
     Q_INVOKABLE bool sendPacket(const QString &Packet);
 
     Q_INVOKABLE bool setSingleToneWaveLength(const QString waveLength);
-    Q_INVOKABLE bool SetStartWaveLength(const float WaveLength);
-    Q_INVOKABLE bool SetStopWaveLength(const float WaveLength);
-    Q_INVOKABLE bool SetSweptSpeed(const float SweptSpeed);
-    Q_INVOKABLE bool SetPauseTime(const int Pause);
-    Q_INVOKABLE bool SetControlMode(const ESuperlumLaserControlMode ControlMode);
+    Q_INVOKABLE bool setStartWaveLength(const QString WaveLength);
+    Q_INVOKABLE bool setStopWaveLength(const QString WaveLength);
+    Q_INVOKABLE bool setSweptSpeed(const QString sweptSpeed);
+    Q_INVOKABLE bool setPauseTime(const QString Pause);
+    Q_INVOKABLE bool setControlMode(const ESuperlumLaserControlMode ControlMode);
 
 
     //virtual bool Connect() override;
