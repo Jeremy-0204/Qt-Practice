@@ -8,44 +8,44 @@ MGenSweepLaser :: MGenSweepLaser(QObject *parent)
 MGenSweepLaser :: ~MGenSweepLaser()
 {}
 
-ESuperlumLaserSweepMode MGenSweepLaser :: SweepMode() const
-{
-    return mSweepMode;
-}
+//ESuperlumLaserSweepMode MGenSweepLaser :: SweepMode() const
+//{
+//    return mSweepMode;
+//}
 
-float MGenSweepLaser :: SingleToneWaveLength() const
-{
-    return mSingleToneWaveLength;
-}
+//float MGenSweepLaser :: SingleToneWaveLength() const
+//{
+//    return mSingleToneWaveLength;
+//}
 
-float MGenSweepLaser :: StartWaveLength() const
-{
-    return mStartWaveLength;
-}
+//float MGenSweepLaser :: StartWaveLength() const
+//{
+//    return mStartWaveLength;
+//}
 
-float MGenSweepLaser :: StopWaveLength() const
-{
-    return mStopWaveLength;
-}
+//float MGenSweepLaser :: StopWaveLength() const
+//{
+//    return mStopWaveLength;
+//}
 
-float MGenSweepLaser :: SweepSpeed() const
-{
-    return mSweepSpeed;
-}
+//float MGenSweepLaser :: SweepSpeed() const
+//{
+//    return mSweepSpeed;
+//}
 
-int MGenSweepLaser :: PauseTime() const
-{
-    return mPauseTime;
-}
+//int MGenSweepLaser :: PauseTime() const
+//{
+//    return mPauseTime;
+//}
 
-bool MGenSweepLaser :: isConnected() const
-{
-    return mbConnected;
-}
+//bool MGenSweepLaser :: isConnected() const
+//{
+//    return mbConnected;
+//}
 
-ELaserStatusMode MGenSweepLaser :: isLaserOn() const
-{
-    return mStatusMode;
-}
+//ELaserStatusMode MGenSweepLaser :: isLaserOn() const
+//{
+//    return mStatusMode;
+//}
 
 MGEN_NAMESPACE_END

@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 
 Item {
     id: item1
+
     ColumnLayout{
         anchors.left: parent.left
         anchors.leftMargin: 20
@@ -37,8 +38,8 @@ Item {
         Button {
             id: saveButton
             text: "Save"
-            // onClicekd()에 Signal 호출
-            // 입력한 값들 모두 cpp에 저장, 저장되면 send packet 호출
+            onClicked:
+                superlumBS840.setSingleToneWaveLength(textField.text)
         }
     }
 }

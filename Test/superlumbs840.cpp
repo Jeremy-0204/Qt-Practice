@@ -1,4 +1,10 @@
 #include "superlumbs840.h"
+#include <QQmlEngine>
+#include <QQmlApplicationEngine>
+#include <iostream>
+#include <iomanip>
+
+
 MGEN_NAMESPACE_START
 
 SuperlumBS840 :: SuperlumBS840(QObject *parent) : MGenSweepLaser(parent), mSerialPort()
@@ -25,6 +31,81 @@ bool SuperlumBS840 :: close()
 {
     mbConnected = mSerialPort.closePort();
     return mbConnected;
+}
+
+bool SuperlumBS840::setSingleToneWaveLength(const QString waveLength)
+{
+    float WaveLength = waveLength.toInt();
+    const float MinWaveLength = 100.0f * (WaveLength - mSuperlumParam.BaseWaveLength);
+    const int SingleToneWaveLength = static_cast<int>(MinWaveLength);
+    std::stringstream Stream;
+    Stream << "P21" << std::hex << std::setw(4) << std::setfill('0') << SingleToneWaveLength << "\r\n";
+    qDebug() << Stream.str().c_str();
+
+    return sendPacket(Stream.str().c_str());
+}
+
+bool SuperlumBS840::SetStartWaveLength(const float WaveLength)
+{
+    const float MinWaveLength = 100.0f * (WaveLength - mSuperlumParam.BaseWaveLength);
+    const int StartWaveLength =  static_cast<int>(MinWaveLength);
+    std::stringstream Stream;
+    Stream << "P22" << std::hex << std::setw(4) << std::setfill('0') << StartWaveLength << "\r\n";
+
+    return sendPacket(Stream.str().c_str());
+}
+
+bool SuperlumBS840::SetStopWaveLength(const float WaveLength)
+{
+    const float MaxWaveLength = 100.0f * (WaveLength - mSuperlumParam.BaseWaveLength);
+    const int StopWaveLength = static_cast<int>(MaxWaveLength);
+    std::stringstream Stream;
+    Stream << "P23" << std::hex << std::setw(4) << std::setfill('0') << StopWaveLength << "\r\n";
+
+    return sendPacket(Stream.str().c_str());
+}
+
+bool SuperlumBS840::SetSweptSpeed(const float SweptSpeed)
+{
+    const int Speed = static_cast<int>(SweptSpeed);
+    std::stringstream Stream;
+    Stream << "P24" << std::hex << std::setw(6) << std::setfill('0') << Speed << "\r\n";
+
+    return sendPacket(Stream.str().c_str());
+}
+
+bool SuperlumBS840::SetPauseTime(const int Pause)
+{
+    const int Time = static_cast<int>(Pause / 10);
+    std::stringstream Stream;
+    Stream << "P25" << std::hex << std::setw(6) << std::setfill('0') << Time << "\r\n";
+
+    return sendPacket(Stream.str().c_str());
+}
+
+bool SuperlumBS840::SetControlMode(const ESuperlumLaserControlMode ControlMode)
+{
+    if (ControlMode == mSuperlumParam.ControlMode)
+    {
+        return true;
+    }
+
+    std::string Packet = "";
+    switch (ControlMode)
+    {
+    case ESuperlumLaserControlMode::Local:	Packet = "MB\r\n";	break;
+    case ESuperlumLaserControlMode::Remote:	Packet = "ME\r\n";	break;
+    case ESuperlumLaserControlMode::USB:		Packet = "MC\r\n";	break;
+    default: assert(false);				return false;		break;
+    }
+
+    if (sendPacket(Packet.c_str()))
+    {
+        mSuperlumParam.ControlMode = ControlMode;
+        return true;
+    }
+
+    return false;
 }
 
 bool SuperlumBS840 :: sendPacket(const QString &Packet)
@@ -65,7 +146,6 @@ bool SuperlumBS840::RequestDeviceParam()
         sendPacket("P25\r\n") &&
         sendPacket("P26\r\n"));
 }
-
 
 void SuperlumBS840 :: handleReadyRead()
 {
@@ -138,6 +218,8 @@ void SuperlumBS840 :: handleReadyRead()
             nCount = 0;
         }
     }
+
+    qDebug() << mSuperlumParam.BaseWaveLength;
 }
 
 void SuperlumBS840::ParseDataI(const char* Data, const int Size)

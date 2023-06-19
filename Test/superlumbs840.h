@@ -18,6 +18,14 @@ public:
     Q_INVOKABLE bool close();
     Q_INVOKABLE bool sendPacket(const QString &Packet);
 
+    Q_INVOKABLE bool setSingleToneWaveLength(const QString waveLength);
+    Q_INVOKABLE bool SetStartWaveLength(const float WaveLength);
+    Q_INVOKABLE bool SetStopWaveLength(const float WaveLength);
+    Q_INVOKABLE bool SetSweptSpeed(const float SweptSpeed);
+    Q_INVOKABLE bool SetPauseTime(const int Pause);
+    Q_INVOKABLE bool SetControlMode(const ESuperlumLaserControlMode ControlMode);
+
+
     //virtual bool Connect() override;
     //virtual bool Disconnect() override;
 
@@ -55,6 +63,9 @@ private:
     void ParseDataI(const char* Data, const int Size);
     void ParseDataM(const char* Data, const int Size);
     void ParseDataP(const char* Data, const int Size);
+
+    QObject* mSingleton;
+
 
 private:
     SerialPort mSerialPort;
