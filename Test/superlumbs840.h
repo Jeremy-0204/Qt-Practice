@@ -54,6 +54,7 @@ public:
 
 public slots:
     void handleReadyRead();
+    void signalslotTest();
 //    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
 
 private:

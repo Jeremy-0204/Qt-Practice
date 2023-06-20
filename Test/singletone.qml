@@ -6,6 +6,8 @@ import QtQuick.Layouts 1.3
 Item {
     id: item1
 
+    signal signalfromSingleTone
+
     ColumnLayout{
         anchors.left: parent.left
         anchors.leftMargin: 20
@@ -41,6 +43,7 @@ Item {
             onClicked: {
                 superlumBS840.setSingleToneWaveLength(textField.text)
                 superlumBS840.setSweptMode(0)
+                item1.signalfromSingleTone()
             }
         }
     }

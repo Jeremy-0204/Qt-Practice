@@ -11,17 +11,21 @@ Window {
     width: 400
     height: 300
 
-    SerialPort {
+    SerialPort
+    {
         id: serialPort
     }
 
-    SuperlumBS840{
+    SuperlumBS840
+    {
         id: superlumBS840
     }
 
-    Loader { id: mainLoader }
+    Loader
+    { id: mainLoader }
 
     RowLayout
+
     {
         spacing: 0
 
@@ -89,6 +93,7 @@ Window {
 
                            sweepControlLoader.source = ""
                            sweepControlLoader.source = "singletone.qml"
+                           sweepControlLoader.item.item1.signalfromSingleTone.connect(superlumBS840, superlumBS840.signalslotTest)
                        }
                    }
 
@@ -141,9 +146,6 @@ Window {
                     width: windows.width*3/4
                     height: parent.height*3/4
                 }
-
-
-
             }
         }
     }
