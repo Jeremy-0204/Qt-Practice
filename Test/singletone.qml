@@ -38,8 +38,10 @@ Item {
         Button {
             id: saveButton
             text: "Save"
-            onClicked:
+            onClicked: {
                 superlumBS840.setSingleToneWaveLength(textField.text)
+                superlumBS840.setSweptMode(0)
+            }
         }
     }
 }

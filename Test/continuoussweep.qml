@@ -100,7 +100,7 @@ Item {
                 superlumBS840.setStopWaveLength(endWaveLength.text)
                 superlumBS840.setSweptSpeed(sweepSpeedInput.text)
                 superlumBS840.setPauseTime(pauseInput.text)
-
+                superlumBS840.setSweptMode(2)
             }
             // onClicekd()에 Signal 호출
             // 입력한 값들 모두 cpp에 저장, 저장되면 send packet 호출
