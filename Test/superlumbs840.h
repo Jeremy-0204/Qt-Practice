@@ -23,7 +23,10 @@ public:
     Q_INVOKABLE bool setStopWaveLength(const QString WaveLength);
     Q_INVOKABLE bool setSweptSpeed(const QString sweptSpeed);
     Q_INVOKABLE bool setPauseTime(const QString Pause);
-    Q_INVOKABLE bool setControlMode(const ESuperlumLaserControlMode ControlMode);
+    Q_INVOKABLE bool setSweptMode(const int SweptMode);
+    Q_INVOKABLE bool setControlMode(const int ControlMode);
+
+    //ESuperlumLaserSweepMode SetQStringToEnum(const QString SweepMode)
 
 
     //virtual bool Connect() override;

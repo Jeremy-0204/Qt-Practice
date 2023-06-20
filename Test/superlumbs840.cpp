@@ -91,7 +91,43 @@ bool SuperlumBS840::setPauseTime(const QString pause)
     return sendPacket(Stream.str().c_str());
 }
 
-bool SuperlumBS840::setControlMode(const ESuperlumLaserControlMode ControlMode)
+//ESuperlumLaserSweepMode SuperlumBS840::SetQStringToEnum(const QString SweepMode){
+//    if (SweepMode == "SingleTone"){
+//        return ESuperlumLaserSweepMode::SingleTone;
+//    }
+
+//    else if (SweepMode == "SingleSweep"){
+//        return
+//    }
+//}
+
+bool SuperlumBS840::setSweptMode(const int SweptMode)
+{
+    if (SweptMode == mSweepMode)
+    {
+        return true;
+    }
+
+    std::string Packet = "";
+    switch (SweptMode)
+    {
+    case ESuperlumLaserSweepMode::SingleTone:		Packet = "MT\r\n";	break;
+    case ESuperlumLaserSweepMode::SingleSweep:		Packet = "MY\r\n";	break;
+    case ESuperlumLaserSweepMode::ContinuousSweep:	Packet = "MZ\r\n";	break;
+    default: assert(false);					return false;		break;
+    }
+
+    if (sendPacket(Packet.c_str()))
+    {
+        mSweepMode = static_cast<ESuperlumLaserSweepMode>(SweptMode);
+        return true;
+    }
+
+    return false;
+}
+
+//bool SuperlumBS840::setControlMode(const ESuperlumLaserControlMode ControlMode)
+bool SuperlumBS840::setControlMode(const int ControlMode)
 {
     if (ControlMode == mSuperlumParam.ControlMode)
     {
@@ -109,7 +145,7 @@ bool SuperlumBS840::setControlMode(const ESuperlumLaserControlMode ControlMode)
 
     if (sendPacket(Packet.c_str()))
     {
-        mSuperlumParam.ControlMode = ControlMode;
+        mSuperlumParam.ControlMode = static_cast<ESuperlumLaserControlMode>(ControlMode);
         return true;
     }
 

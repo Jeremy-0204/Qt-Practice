@@ -59,6 +59,9 @@ protected:
     float mStopWaveLength = 0.0f;
     float mSweepSpeed = 0.0f;
     int mPauseTime = 0;
+
+    ESuperlumLaserSweepMode mSweepMode = ESuperlumLaserSweepMode :: ContinuousSweep;
+
 };
 
 MGEN_NAMESPACE_END
