@@ -58,7 +58,6 @@ bool SuperlumBS840::setStartWaveLength(const QString waveLength)
     const int StartWaveLength =  static_cast<int>(MinWaveLength);
     std::stringstream Stream;
     Stream << "P22" << std::hex << std::setw(4) << std::setfill('0') << StartWaveLength << "\r\n";
-    qDebug() << Stream.str().c_str();
 
     return sendPacket(Stream.str().c_str());
 }
@@ -70,7 +69,6 @@ bool SuperlumBS840::setStopWaveLength(const QString waveLength)
     const int StopWaveLength = static_cast<int>(MaxWaveLength);
     std::stringstream Stream;
     Stream << "P23" << std::hex << std::setw(4) << std::setfill('0') << StopWaveLength << "\r\n";
-    qDebug() << Stream.str().c_str();
 
     return sendPacket(Stream.str().c_str());
 }
@@ -81,7 +79,6 @@ bool SuperlumBS840::setSweptSpeed(const QString sweptSpeed)
     const int Speed = static_cast<int>(SweptSpeed);
     std::stringstream Stream;
     Stream << "P24" << std::hex << std::setw(6) << std::setfill('0') << Speed << "\r\n";
-    qDebug() << Stream.str().c_str();
 
     return sendPacket(Stream.str().c_str());
 }
@@ -92,7 +89,6 @@ bool SuperlumBS840::setPauseTime(const QString pause)
     const int Time = static_cast<int>(Pause / 10);
     std::stringstream Stream;
     Stream << "P25" << std::hex << std::setw(6) << std::setfill('0') << Time << "\r\n";
-    qDebug() << Stream.str().c_str();
 
     return sendPacket(Stream.str().c_str());
 }
@@ -217,8 +213,26 @@ bool SuperlumBS840::RequestDeviceParam()
 
 void SuperlumBS840 :: handleReadyRead()
 {
-    qDebug() << "\nHANDLE READY READ CALLED";
-    mDataRead = mSerialPort.mSerial->readLine();
+    //qDebug() << "\nHANDLE READY READ CALLED";
+    //mDataRead = mSerialPort.mSerial->readLine();
+
+
+    static QByteArray receivedData;  // 수신한 데이터를 누적할 변수
+
+    while (mSerialPort.mSerial->bytesAvailable() > 0) {
+        QByteArray newData = mSerialPort.mSerial->readAll();  // 새로 도착한 데이터를 읽음
+        receivedData += newData;  // 데이터를 누적
+
+        // 특정 패턴 또는 문자열을 확인하여 패킷의 끝을 확인
+        if (receivedData.endsWith("\n")) {
+            // 패킷이 완전히 도착한 경우 처리 로직 수행
+            mDataRead = receivedData;
+
+            // 누적한 데이터 초기화
+            receivedData.clear();
+        }
+    }
+
     qDebug() << "WE RECEIVED: " << mDataRead;
 
     bool bCR = true;
@@ -288,7 +302,7 @@ void SuperlumBS840 :: handleReadyRead()
         }
     }
 
-    qDebug() << "\nTesting BaseWaveLength : " << mSuperlumParam.BaseWaveLength;
+    qDebug() << "Testing BaseWaveLength : " << mSuperlumParam.BaseWaveLength <<"\n";
 }
 
 void SuperlumBS840::ParseDataI(const char* Data, const int Size)
