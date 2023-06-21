@@ -160,7 +160,7 @@ bool SuperlumBS840::setControlMode(const int ControlMode)
 bool SuperlumBS840 :: sendPacket(const QString &Packet)
 {
     mbWritten = mSerialPort.writePacket(Packet);
-    qDebug() << mbWritten;
+    //qDebug() << mbWritten;
     return mbWritten;
 }
 

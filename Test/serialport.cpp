@@ -1,5 +1,6 @@
 #include "serialport.h"
 #include "QDebug"
+#include "qmetaobject.h"
 
 SerialPort::SerialPort(QObject *parent)
     : QObject(parent), mSerial(new QSerialPort(this))
@@ -29,40 +30,53 @@ QStringList SerialPort::baudRates() const
 
 QStringList SerialPort::flowControls() const
 {
+    QMetaEnum metaEnum = QMetaEnum::fromType<QSerialPort::FlowControl>();
     QStringList flowControlOptions;
-    flowControlOptions.append("NoFlowControl");
-    flowControlOptions.append("HardwareControl");
-    flowControlOptions.append("SoftwareControl");
+
+    for (int i = 0; i < metaEnum.keyCount(); ++i) {
+        const char* key = metaEnum.key(i);
+        flowControlOptions.append(QString::fromUtf8(key));
+    }
+
     return flowControlOptions;
 }
 
 QStringList SerialPort::parityOptions() const
 {
+
+    QMetaEnum metaEnum = QMetaEnum::fromType<QSerialPort::Parity>();
     QStringList parityOptions;
-    parityOptions.append("NoParity");
-    parityOptions.append("EvenParity");
-    parityOptions.append("OddParity");
-    parityOptions.append("SpaceParity");
-    parityOptions.append("MarkParity");
+
+    for (int i = 0; i < metaEnum.keyCount(); ++i) {
+        const char* key = metaEnum.key(i);
+        parityOptions.append(QString::fromUtf8(key));
+    }
+
     return parityOptions;
 }
 
 QStringList SerialPort::dataBits() const
 {
+    QMetaEnum metaEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
     QStringList dataBitsOptions;
-    dataBitsOptions.append("Data5");
-    dataBitsOptions.append("Data6");
-    dataBitsOptions.append("Data7");
-    dataBitsOptions.append("Data8");
+
+    for (int i = 0; i < metaEnum.keyCount(); ++i) {
+        const char* key = metaEnum.key(i);
+        dataBitsOptions.append(QString::fromUtf8(key));
+    }
+
     return dataBitsOptions;
 }
 
 QStringList SerialPort::stopBits() const
 {
+    QMetaEnum metaEnum = QMetaEnum::fromType<QSerialPort::StopBits>();
     QStringList stopBitsOptions;
-    stopBitsOptions.append("OneStop");
-    stopBitsOptions.append("OneAndHalfStop");
-    stopBitsOptions.append("TwoStop");
+
+    for (int i = 0; i < metaEnum.keyCount(); ++i) {
+        const char* key = metaEnum.key(i);
+        stopBitsOptions.append(QString::fromUtf8(key));
+    }
     return stopBitsOptions;
 }
 
@@ -84,27 +98,30 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     mSerial->setPortName(portName);
     qDebug() << mSerial->portName();
 
+    qDebug() << flowControl << parity;
+
     // Baud rate 설정
     if(mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate)))
     {
-        qDebug() << "SET GOOD" << baudRate;
+        qDebug() << "SET baudRate" << baudRate;
     }
     else{
-        qDebug() << "SET FAILED";
+        qDebug() << "SET baudRate FAILED";
     }
 
     // Flow control 설정
 
     if(mSerial->setFlowControl(static_cast<QSerialPort::FlowControl>(flowControl)))
     {
-        qDebug() << "SET GOOD" << flowControl;
+        qDebug() << "SET flowControl" << flowControl;
     }
     else{
-        qDebug() << "SET FAILED";
+        qDebug() << "SET flowControl FAILED";
     }
 
     // Parity 설정
     mSerial->setParity(static_cast<QSerialPort::Parity>(parity));
+    qDebug() << "SET parity" << parity;
 
     // Data bits 설정
     mSerial->setDataBits(static_cast<QSerialPort::DataBits>(dataBits));
