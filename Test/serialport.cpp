@@ -127,16 +127,26 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
 
     // Parity 설정
     QMetaEnum parityEnum = QMetaEnum::fromType<QSerialPort::Parity>();
-    int parityValueIndex = parityEnum.keyToValue(parity.toStdString().c_str());
-    qDebug() << parityValueIndex;
-    qDebug() << parityEnum.valueToKey(parityValueIndex);
-    if (parityValueIndex != -1) {
-        QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(parityValueIndex));
-        mSerial->setParity(parityValue);
+
+    for (qint32 i = 0; i < parityEnum.keyCount(); i++)
+    {
+        if (parityEnum.key(i) == parity)
+        {
+            QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(i));
+            qDebug() << parityValue << QSerialPort::Parity(i);
+            mSerial->setParity(parityValue);
+        }
     }
-    else {
-        qDebug() << "Invalid parity value: " << QString::fromStdString(parity.toStdString());
-    }
+//    int parityValueIndex = parityEnum.keyToValue(parity.toStdString().c_str());
+//    qDebug() << parityValueIndex;
+//    qDebug() << parityEnum.valueToKey(parityValueIndex);
+//    if (parityValueIndex != -1) {
+//        QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(parityValueIndex));
+//        mSerial->setParity(parityValue);
+//    }
+//    else {
+//        qDebug() << "Invalid parity value: " << QString::fromStdString(parity.toStdString());
+//    }
 
 
     // Data bits 설정
