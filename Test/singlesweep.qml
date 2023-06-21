@@ -73,10 +73,10 @@ Item {
             text: "Save"
             onClicked:
             {
+                superlumBS840.setSweptMode(1)
                 superlumBS840.setStartWaveLength(startWaveLength.text)
                 superlumBS840.setStopWaveLength(endWaveLength.text)
                 superlumBS840.setSweptSpeed(sweepSpeedInput.text)
-                superlumBS840.setSweptMode(1)
             }
         }
     }

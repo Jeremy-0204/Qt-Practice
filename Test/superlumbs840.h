@@ -32,8 +32,8 @@ public:
     //virtual bool Connect() override;
     //virtual bool Disconnect() override;
 
-//    Q_INVOKABLE virtual bool powerOn();
-//    Q_INVOKABLE virtual bool powerOff();
+    Q_INVOKABLE virtual bool powerOn();
+    Q_INVOKABLE virtual bool powerOff();
 
 //    bool RequestDeviceName();
 
@@ -41,8 +41,8 @@ public:
 
 //    bool RequestDeviceParam();
 
-//    virtual bool LaserOn() override;
-//    virtual bool LaserOff() override;
+    Q_INVOKABLE virtual bool LaserOn();
+    Q_INVOKABLE virtual bool LaserOff();
 
 //    // Q_PROPERTY 변수들에 대한 Setter 함수
 //    virtual bool setMSweepMode(ESuperlumLaserSweepMode SweepMode) override;

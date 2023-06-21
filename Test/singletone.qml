@@ -41,8 +41,8 @@ Item {
             id: saveButton
             text: "Save"
             onClicked: {
-                superlumBS840.setSingleToneWaveLength(textField.text)
                 superlumBS840.setSweptMode(0)
+                superlumBS840.setSingleToneWaveLength(textField.text)
                 item1.signalfromSingleTone()
             }
         }

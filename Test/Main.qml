@@ -127,6 +127,8 @@ Window {
                            color: continuousSweepButton.checked ? "steelblue" : "lightgray"
                        }
 
+                       checked:true
+
                        onClicked: {
                            singleToneButton.checked = false
                            singleSweepButton.checked = false
