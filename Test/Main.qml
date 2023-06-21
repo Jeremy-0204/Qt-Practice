@@ -170,12 +170,10 @@ Window {
 
                        checked:true
 
-
                        onClicked: {
                            singleToneButton.checked = false
                            singleSweepButton.checked = false
                            continuousSweepButton.checked = true
-
                            sweepControlLoader.source = ""
                            sweepControlLoader.source = "continuoussweep.qml"
                        }
@@ -189,7 +187,6 @@ Window {
                     y: 75
                     width: windows.width*3/4
                     height: parent.height*3/4
-
                     source: "continuoussweep.qml"
                 }
             }
