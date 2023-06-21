@@ -102,17 +102,11 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
              << "Data Bits : " << dataBits << "\n"
              << "Stop Bits : " << stopBits << "\n";
 
-
+    // Port Name 설정
     mSerial->setPortName(portName);
 
     // Baud rate 설정
-    if(mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate)))
-    {
-        //qDebug() << "SET baudRate" << baudRate;
-    }
-    else{
-        qDebug() << "SET baudRate FAILED";
-    }
+    mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate));
 
     // Flow control 설정
     QMetaEnum flowControlEnum = QMetaEnum::fromType<QSerialPort::FlowControl>();
@@ -138,7 +132,6 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
         }
     }
 
-
     // Data bits 설정
     QMetaEnum dataBitsEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
     for (qint32 i = 0; i < dataBitsEnum.keyCount(); i++)
@@ -162,7 +155,6 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
             break;
         }
     }
-
 
     qDebug() << "CONNECTED CALLED";
 
