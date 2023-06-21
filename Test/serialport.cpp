@@ -209,21 +209,14 @@ bool SerialPort :: writePacket(const QString &Packet)
     const char * cstr = Packet.toUtf8().constData();
 
     if (mSerial->isOpen()){
+        qDebug() << "PACKET SENDING: " << Packet;
         bytesWritten = mSerial->write(cstr);
-//        qDebug() << "PORT IS CURRENTLY OPENED";
-//        qDebug() << bytesWritten << " " << sizeof(cstr);
+        mSerial->waitForReadyRead(1000);
     }
 
     else
     {
         qDebug() << "PORT IS NOT OPENED";
-    }
-
-    if (/*bytesWritten != sizeof(cstr) || */ bytesWritten == -1)
-    {
         return false;
     }
-
-    return true;
-
 }

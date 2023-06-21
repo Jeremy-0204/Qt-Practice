@@ -29,6 +29,7 @@ bool SuperlumBS840 :: connectPort(const QString &portName, int baudRate, const Q
     RequestDeviceStatus();
     RequestDeviceParam();
 
+
     return mbConnected;
 }
 
@@ -160,7 +161,6 @@ bool SuperlumBS840::setControlMode(const int ControlMode)
 bool SuperlumBS840 :: sendPacket(const QString &Packet)
 {
     mbWritten = mSerialPort.writePacket(Packet);
-    qDebug() << Packet;
     return mbWritten;
 }
 
@@ -176,11 +176,30 @@ bool SuperlumBS840::RequestDeviceStatus()
 
 bool SuperlumBS840::RequestDeviceParam()
 {
+    sendPacket("P01\r\n");
+    sendPacket("P02\r\n");
+    sendPacket("P03\r\n");
+    sendPacket("P04\r\n");
+    sendPacket("P07\r\n");
+
+    sendPacket("P10\r\n");
+    sendPacket("P11\r\n");
+    sendPacket("P12\r\n");
+
+    sendPacket("P20\r\n");
+    sendPacket("P21\r\n");
+    sendPacket("P22\r\n");
+    sendPacket("P23\r\n");
+    sendPacket("P24\r\n");
+    sendPacket("P25\r\n");
+    sendPacket("P26\r\n");
+
+    /*
     return (
         sendPacket("P01\r\n") &&
         sendPacket("P02\r\n") &&
         sendPacket("P03\r\n") &&
-        sendPacket("P04\r\n") &&
+        sendPacket("P04\r\n") )&&
         sendPacket("P07\r\n") &&
 
         sendPacket("P10\r\n") &&
@@ -193,13 +212,14 @@ bool SuperlumBS840::RequestDeviceParam()
         sendPacket("P23\r\n") &&
         sendPacket("P24\r\n") &&
         sendPacket("P25\r\n") &&
-        sendPacket("P26\r\n"));
+        sendPacket("P26\r\n")*/;
 }
 
 void SuperlumBS840 :: handleReadyRead()
 {
-    mDataRead = mSerialPort.mSerial->readAll();
-    qDebug() << mDataRead;
+    qDebug() << "\nHANDLE READY READ CALLED";
+    mDataRead = mSerialPort.mSerial->readLine();
+    qDebug() << "WE RECEIVED: " << mDataRead;
 
     bool bCR = true;
     bool bLF = true;
@@ -268,7 +288,7 @@ void SuperlumBS840 :: handleReadyRead()
         }
     }
 
-    qDebug() << mSuperlumParam.BaseWaveLength;
+    qDebug() << "\nTesting BaseWaveLength : " << mSuperlumParam.BaseWaveLength;
 }
 
 void SuperlumBS840::ParseDataI(const char* Data, const int Size)
