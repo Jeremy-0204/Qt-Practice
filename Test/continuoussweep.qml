@@ -55,6 +55,7 @@ Item {
             Text {
                 id: puaseText
                 text: qsTr("Pause")
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 font.bold: true
                 font.pointSize: 9
             }

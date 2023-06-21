@@ -43,6 +43,7 @@ Window {
                 Button
                 {
                     text: "settings"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
                         mainLoader.source = ""
@@ -53,6 +54,7 @@ Window {
                 Button
                 {
                     text: "Power On"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
                         superlumBS840.powerOn()
@@ -62,6 +64,7 @@ Window {
                 Button
                 {
                     text: "Power Off"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
                         superlumBS840.powerOff()
@@ -71,6 +74,7 @@ Window {
                 Button
                 {
                     text: "Laser On"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
                         superlumBS840.laserOn()
@@ -80,6 +84,7 @@ Window {
                 Button
                 {
                     text: "Laser Off"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
                         superlumBS840.laserOff()
