@@ -210,13 +210,13 @@ bool SerialPort :: writePacket(const QString &Packet)
 
     if (mSerial->isOpen()){
         bytesWritten = mSerial->write(cstr);
-        qDebug() << "PORT IS CURRENTLY OPENED";
-        qDebug() << bytesWritten << " " << sizeof(cstr);
+//        qDebug() << "PORT IS CURRENTLY OPENED";
+//        qDebug() << bytesWritten << " " << sizeof(cstr);
     }
 
     else
     {
-        //qDebug() << "PORT IS NOT OPENED";
+        qDebug() << "PORT IS NOT OPENED";
     }
 
     if (/*bytesWritten != sizeof(cstr) || */ bytesWritten == -1)
