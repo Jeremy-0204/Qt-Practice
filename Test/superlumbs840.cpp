@@ -39,6 +39,45 @@ bool SuperlumBS840 :: close()
     return mbConnected;
 }
 
+bool SuperlumBS840::powerOn()
+{
+    if (sendPacket("MW\r\n"))
+    {
+        mLaserStatusMode = ELaserStatusMode::PowerOn;
+    }
+    return false;
+}
+
+bool SuperlumBS840::powerOff()
+{
+    if (sendPacket("MO\r\n"))
+    {
+        mLaserStatusMode = ELaserStatusMode::PowerOff;
+    }
+    return false;
+}
+
+bool SuperlumBS840::LaserOn()
+{
+    if (sendPacket("X\r\n"))
+    {
+        mLaserStatusMode = ELaserStatusMode::Fire;
+        return true;
+    }
+    return false;
+}
+
+bool SuperlumBS840::LaserOff()
+{
+    if (sendPacket("X\r\n"))
+    {
+        mLaserStatusMode = ELaserStatusMode::ReadyToFire;
+        return true;
+    }
+    return false;
+}
+
+
 bool SuperlumBS840::setSingleToneWaveLength(const QString waveLength)
 {
     float WaveLength = waveLength.toFloat();

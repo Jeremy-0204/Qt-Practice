@@ -63,6 +63,7 @@ protected:
     int mPauseTime = 0;
 
     ESuperlumLaserSweepMode mSweepMode = ESuperlumLaserSweepMode :: ContinuousSweep;
+    ELaserStatusMode mLaserStatusMode = ELaserStatusMode :: PowerOff;
 
 };
 
