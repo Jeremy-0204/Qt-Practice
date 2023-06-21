@@ -116,59 +116,51 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
 
     // Flow control 설정
     QMetaEnum flowControlEnum = QMetaEnum::fromType<QSerialPort::FlowControl>();
-    int flowControlValueIndex = flowControlEnum.keyToValue(flowControl.toStdString().c_str());
-    if (flowControlValueIndex != -1) {
-        QSerialPort::FlowControl flowControlValue = static_cast<QSerialPort::FlowControl>(flowControlEnum.value(flowControlValueIndex));
-        mSerial->setFlowControl(flowControlValue);
-    }
-    else {
-        qDebug() << "Invalid flowControl value: " << QString::fromStdString(flowControl.toStdString());
+    for (qint32 i = 0; i < flowControlEnum.keyCount(); i++)
+    {
+        if (flowControlEnum.key(i) == flowControl)
+        {
+            QSerialPort::FlowControl flowControlValue = static_cast<QSerialPort::FlowControl>(flowControlEnum.value(i));
+            mSerial->setFlowControl(flowControlValue);
+            break;
+        }
     }
 
     // Parity 설정
     QMetaEnum parityEnum = QMetaEnum::fromType<QSerialPort::Parity>();
-
     for (qint32 i = 0; i < parityEnum.keyCount(); i++)
     {
         if (parityEnum.key(i) == parity)
         {
             QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(i));
-            qDebug() << parityValue << QSerialPort::Parity(i);
             mSerial->setParity(parityValue);
+            break;
         }
     }
-//    int parityValueIndex = parityEnum.keyToValue(parity.toStdString().c_str());
-//    qDebug() << parityValueIndex;
-//    qDebug() << parityEnum.valueToKey(parityValueIndex);
-//    if (parityValueIndex != -1) {
-//        QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(parityValueIndex));
-//        mSerial->setParity(parityValue);
-//    }
-//    else {
-//        qDebug() << "Invalid parity value: " << QString::fromStdString(parity.toStdString());
-//    }
 
 
     // Data bits 설정
     QMetaEnum dataBitsEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
-    int dataBitsValueIndex = dataBitsEnum.keyToValue(dataBits.toStdString().c_str());
-    if (dataBitsValueIndex != -1) {
-        QSerialPort::DataBits dataBitsValue = static_cast<QSerialPort::DataBits>(dataBitsEnum.value(dataBitsValueIndex));
-        mSerial->setDataBits(dataBitsValue);
-    }
-    else {
-        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits.toStdString());
+    for (qint32 i = 0; i < dataBitsEnum.keyCount(); i++)
+    {
+        if (dataBitsEnum.key(i) == dataBits)
+        {
+            QSerialPort::DataBits dataBitsValue = static_cast<QSerialPort::DataBits>(dataBitsEnum.value(i));
+            mSerial->setDataBits(dataBitsValue);
+            break;
+        }
     }
 
     // Stop bits 설정
     QMetaEnum stopBitsEnum = QMetaEnum::fromType<QSerialPort::StopBits>();
-    int stopBitsValueIndex = stopBitsEnum.keyToValue(stopBits.toStdString().c_str());
-    if (stopBitsValueIndex != -1) {
-        QSerialPort::StopBits stopBitsValue = static_cast<QSerialPort::StopBits>(stopBitsEnum.value(stopBitsValueIndex));
-        mSerial->setStopBits(stopBitsValue);
-    }
-    else {
-        qDebug() << "Invalid stopBits value: " << QString::fromStdString(stopBits.toStdString());
+    for (qint32 i = 0; i < stopBitsEnum.keyCount(); i++)
+    {
+        if (stopBitsEnum.key(i) == stopBits)
+        {
+            QSerialPort::StopBits stopBitsValue = static_cast<QSerialPort::StopBits>(stopBitsEnum.value(i));
+            mSerial->setStopBits(stopBitsValue);
+            break;
+        }
     }
 
 
