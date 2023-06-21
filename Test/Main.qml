@@ -49,6 +49,42 @@ Window {
                         mainLoader.source = "settings.qml"
                     }
                 }
+
+                Button
+                {
+                    text: "Power On"
+                    onClicked:
+                    {
+                        superlumBS840.powerOn()
+                    }
+                }
+
+                Button
+                {
+                    text: "Power Off"
+                    onClicked:
+                    {
+                        superlumBS840.powerOff()
+                    }
+                }
+
+                Button
+                {
+                    text: "Laser On"
+                    onClicked:
+                    {
+                        superlumBS840.laserOn()
+                    }
+                }
+
+                Button
+                {
+                    text: "Laser Off"
+                    onClicked:
+                    {
+                        superlumBS840.laserOff()
+                    }
+                }
             }
         }
 

@@ -57,7 +57,7 @@ bool SuperlumBS840::powerOff()
     return false;
 }
 
-bool SuperlumBS840::LaserOn()
+bool SuperlumBS840::laserOn()
 {
     if (sendPacket("X\r\n"))
     {
@@ -67,7 +67,7 @@ bool SuperlumBS840::LaserOn()
     return false;
 }
 
-bool SuperlumBS840::LaserOff()
+bool SuperlumBS840::laserOff()
 {
     if (sendPacket("X\r\n"))
     {

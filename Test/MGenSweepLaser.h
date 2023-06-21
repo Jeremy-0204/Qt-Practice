@@ -25,11 +25,11 @@ public:
     virtual bool connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits) = 0;
     virtual bool close() = 0;
     virtual bool sendPacket(const QString &Packet) = 0;
-    //virtual bool PowerOn() = 0;
-    //virtual bool PowerOff() = 0;
+    virtual bool powerOn() = 0;
+    virtual bool powerOff() = 0;
 
-    //virtual bool LaserOn() = 0;
-    //virtual bool LaserOff() = 0;
+    virtual bool laserOn() = 0;
+    virtual bool laserOff() = 0;
 
     // Q_PROPERTY 변수들에 대한 Setter 함수
     //virtual bool setMSweepMode(ESuperlumLaserSweepMode SweepMode) = 0;
