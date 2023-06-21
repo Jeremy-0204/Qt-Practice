@@ -122,7 +122,7 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     } else {
         // 시리얼 포트가 성공적으로 열렸을 때의 로직
         // 연결된 시리얼 포트 사용 가능
-        qDebug() << "FAILED";
+        qDebug() << "FAILED: " << mSerial->error();
         return false;
     }
 }
