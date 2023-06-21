@@ -94,15 +94,21 @@ void SerialPort::refreshAvailablePorts()
 
 bool SerialPort::connectToPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits)
 {
-    mSerial->setPortName(portName);
-    qDebug() << mSerial->portName();
+    qDebug() << "현재 받아온 매개변수는 :\n"
+             << "Port Name : " << portName << "\n"
+             << "Baud Rate : " << baudRate << "\n"
+             << "Flow Control : " << flowControl << "\n"
+             << "Parity : " << parity << "\n"
+             << "Data Bits : " << dataBits << "\n"
+             << "Stop Bits : " << stopBits << "\n";
 
-    qDebug() << stopBits;
+
+    mSerial->setPortName(portName);
 
     // Baud rate 설정
     if(mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate)))
     {
-        qDebug() << "SET baudRate" << baudRate;
+        //qDebug() << "SET baudRate" << baudRate;
     }
     else{
         qDebug() << "SET baudRate FAILED";
@@ -122,6 +128,8 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
     // Parity 설정
     QMetaEnum parityEnum = QMetaEnum::fromType<QSerialPort::Parity>();
     int parityValueIndex = parityEnum.keyToValue(parity.toStdString().c_str());
+    qDebug() << parityValueIndex;
+    qDebug() << parityEnum.valueToKey(parityValueIndex);
     if (parityValueIndex != -1) {
         QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(parityValueIndex));
         mSerial->setParity(parityValue);
@@ -166,6 +174,13 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
         // 시리얼 포트가 성공적으로 열렸을 때의 로직
         // 연결된 시리얼 포트 사용 가능
         qDebug() << "FAILED: " << mSerial->error() << mSerial->errorString();
+        qDebug() << "현재 포트의 매개변수는 :\n"
+                 << "Port Name : " << mSerial->portName() << "\n"
+                 << "Baud Rate : " << mSerial->baudRate() << "\n"
+                 << "Flow Control : " << mSerial->flowControl() << "\n"
+                 << "Parity : " << mSerial->parity() << "\n"
+                 << "Data Bits : " << mSerial->dataBits() << "\n"
+                 << "Stop Bits : " << mSerial->stopBits() << "\n";
         return false;
     }
 }
@@ -199,7 +214,7 @@ bool SerialPort :: writePacket(const QString &Packet)
 
     else
     {
-        qDebug() << "PORT IS NOT OPENED";
+        //qDebug() << "PORT IS NOT OPENED";
     }
 
     if (/*bytesWritten != sizeof(cstr) || */ bytesWritten == -1)
