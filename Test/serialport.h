@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <string>
+
+using namespace std;
 
 class SerialPort : public QObject
 {
@@ -28,7 +31,7 @@ public:
 
 public slots:
     void refreshAvailablePorts();
-    bool connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits);
+    bool connectToPort(const QString &portName, int baudRate, string flowControl, string parity, string dataBits, string stopBits);
     bool closePort();
     bool writePacket(const QString &Packet);
 

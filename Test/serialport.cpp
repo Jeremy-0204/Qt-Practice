@@ -92,13 +92,13 @@ void SerialPort::refreshAvailablePorts()
     emit availablePortsChanged();
 }
 
-bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits)
+bool SerialPort::connectToPort(const QString &portName, int baudRate, string flowControl, string parity, string dataBits, string stopBits)
 {
-    // Baud rate 설정
+    qDebug() << baudRate << flowControl << parity;
+
     mSerial->setPortName(portName);
     qDebug() << mSerial->portName();
 
-    qDebug() << flowControl << parity;
 
     // Baud rate 설정
     if(mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate)))
@@ -110,13 +110,14 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     }
 
     // Flow control 설정
-
-    if(mSerial->setFlowControl(static_cast<QSerialPort::FlowControl>(flowControl)))
-    {
-        qDebug() << "SET flowControl" << flowControl;
+    QMetaEnum flowControlEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
+    int flowControlValueIndex = flowControlEnum.keyToValue(flowControl.c_str());
+    if (flowControlValueIndex != -1) {
+        QSerialPort::FlowControl flowControlValue = static_cast<QSerialPort::FlowControl>(flowControlEnum.value(flowControlValueIndex));
+        mSerial->setFlowControl(flowControlValue);
     }
-    else{
-        qDebug() << "SET flowControl FAILED";
+    else {
+        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits);
     }
 
     // Parity 설정
@@ -124,7 +125,16 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, int flowCo
     qDebug() << "SET parity" << parity;
 
     // Data bits 설정
-    mSerial->setDataBits(static_cast<QSerialPort::DataBits>(dataBits));
+    QMetaEnum dataBitsEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
+    int dataBitsValueIndex = dataBitsEnum.keyToValue(dataBits.c_str());
+    if (dataBitsValueIndex != -1) {
+        QSerialPort::DataBits dataBitsValue = static_cast<QSerialPort::DataBits>(dataBitsEnum.value(dataBitsValueIndex));
+        mSerial->setDataBits(dataBitsValue);
+    }
+    else {
+        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits);
+    }
+    //mSerial->setDataBits(static_cast<QSerialPort::DataBits>(dataBits));
 
     // Stop bits 설정
     mSerial->setStopBits(static_cast<QSerialPort::StopBits>(stopBits));
