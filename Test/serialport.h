@@ -31,7 +31,7 @@ public:
 
 public slots:
     void refreshAvailablePorts();
-    bool connectToPort(const QString &portName, int baudRate, string flowControl, string parity, string dataBits, string stopBits);
+    bool connectToPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits);
     bool closePort();
     bool writePacket(const QString &Packet);
 

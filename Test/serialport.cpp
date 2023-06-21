@@ -92,13 +92,12 @@ void SerialPort::refreshAvailablePorts()
     emit availablePortsChanged();
 }
 
-bool SerialPort::connectToPort(const QString &portName, int baudRate, string flowControl, string parity, string dataBits, string stopBits)
+bool SerialPort::connectToPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits)
 {
-    qDebug() << baudRate << flowControl << parity;
-
     mSerial->setPortName(portName);
     qDebug() << mSerial->portName();
 
+    qDebug() << stopBits;
 
     // Baud rate 설정
     if(mSerial->setBaudRate(static_cast<QSerialPort::BaudRate>(baudRate)))
@@ -110,34 +109,51 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, string flo
     }
 
     // Flow control 설정
-    QMetaEnum flowControlEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
-    int flowControlValueIndex = flowControlEnum.keyToValue(flowControl.c_str());
+    QMetaEnum flowControlEnum = QMetaEnum::fromType<QSerialPort::FlowControl>();
+    int flowControlValueIndex = flowControlEnum.keyToValue(flowControl.toStdString().c_str());
     if (flowControlValueIndex != -1) {
         QSerialPort::FlowControl flowControlValue = static_cast<QSerialPort::FlowControl>(flowControlEnum.value(flowControlValueIndex));
         mSerial->setFlowControl(flowControlValue);
     }
     else {
-        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits);
+        qDebug() << "Invalid flowControl value: " << QString::fromStdString(flowControl.toStdString());
     }
 
     // Parity 설정
-    mSerial->setParity(static_cast<QSerialPort::Parity>(parity));
-    qDebug() << "SET parity" << parity;
+    QMetaEnum parityEnum = QMetaEnum::fromType<QSerialPort::Parity>();
+    int parityValueIndex = parityEnum.keyToValue(parity.toStdString().c_str());
+    if (parityValueIndex != -1) {
+        QSerialPort::Parity parityValue = static_cast<QSerialPort::Parity>(parityEnum.value(parityValueIndex));
+        mSerial->setParity(parityValue);
+    }
+    else {
+        qDebug() << "Invalid parity value: " << QString::fromStdString(parity.toStdString());
+    }
+
 
     // Data bits 설정
     QMetaEnum dataBitsEnum = QMetaEnum::fromType<QSerialPort::DataBits>();
-    int dataBitsValueIndex = dataBitsEnum.keyToValue(dataBits.c_str());
+    int dataBitsValueIndex = dataBitsEnum.keyToValue(dataBits.toStdString().c_str());
     if (dataBitsValueIndex != -1) {
         QSerialPort::DataBits dataBitsValue = static_cast<QSerialPort::DataBits>(dataBitsEnum.value(dataBitsValueIndex));
         mSerial->setDataBits(dataBitsValue);
     }
     else {
-        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits);
+        qDebug() << "Invalid dataBits value: " << QString::fromStdString(dataBits.toStdString());
     }
-    //mSerial->setDataBits(static_cast<QSerialPort::DataBits>(dataBits));
 
     // Stop bits 설정
-    mSerial->setStopBits(static_cast<QSerialPort::StopBits>(stopBits));
+    QMetaEnum stopBitsEnum = QMetaEnum::fromType<QSerialPort::StopBits>();
+    int stopBitsValueIndex = stopBitsEnum.keyToValue(stopBits.toStdString().c_str());
+    if (stopBitsValueIndex != -1) {
+        QSerialPort::StopBits stopBitsValue = static_cast<QSerialPort::StopBits>(stopBitsEnum.value(stopBitsValueIndex));
+        mSerial->setStopBits(stopBitsValue);
+    }
+    else {
+        qDebug() << "Invalid stopBits value: " << QString::fromStdString(stopBits.toStdString());
+    }
+
+
     qDebug() << "CONNECTED CALLED";
 
     if (mSerial->open(QIODevice::ReadWrite)) {

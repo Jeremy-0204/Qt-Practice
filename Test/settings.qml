@@ -79,8 +79,8 @@ Window {
                     var selectedFlowControl = flowControlComboBox.model[flowControlComboBox.currentIndex]
                     var selectedParity = parityComboBox.model[parityComboBox.currentIndex]
                     var selectedDataBits = dataBitsComboBox.model[dataBitsComboBox.currentIndex]
-                    var selectedStopBits = stopBitsComboBox.model[baudRateComboBox.currentIndex]
-                    console.log(typeof(selectedFlowControl) + " " + selectedParity)
+                    var selectedStopBits = stopBitsComboBox.model[stopBitsComboBox.currentIndex]
+                    console.log(typeof(selectedStopBits) + " " + selectedStopBits)
                     superlumBS840.connectPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
                 }
             }

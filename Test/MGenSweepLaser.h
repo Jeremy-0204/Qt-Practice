@@ -2,8 +2,10 @@
 
 #include <MGenDeviceDef.h>
 #include <QObject>
+#include <string>
 
 MGEN_NAMESPACE_START
+using namespace std;
 
 class MGenSweepLaser : public QObject
 {
@@ -20,7 +22,7 @@ public:
     virtual ~MGenSweepLaser();
 
     //virtual bool connect() = 0;
-    virtual bool connectPort(const QString &portName, int baudRate, int flowControl, int parity, int dataBits, int stopBits) = 0;
+    virtual bool connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits) = 0;
     virtual bool close() = 0;
     virtual bool sendPacket(const QString &Packet) = 0;
     //virtual bool PowerOn() = 0;
