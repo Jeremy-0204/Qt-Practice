@@ -134,7 +134,6 @@ Window {
 
                            sweepControlLoader.source = ""
                            sweepControlLoader.source = "singletone.qml"
-                           sweepControlLoader.item.item1.signalfromSingleTone.connect(superlumBS840, superlumBS840.signalslotTest)
                        }
                    }
 
