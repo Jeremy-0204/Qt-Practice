@@ -1,6 +1,9 @@
 # ABOUT
 토이 프로젝트로 SuperlumBS840 Swept Laser에 대한 QT 기반 시리얼 통신 프로그램을 만들어 봅니다.
 
+![image](https://github.com/Jeremy-0204/Qt_Practice/assets/107975543/d2772dbf-f63b-465e-bbfb-24483d7726dc)
+
+
 # PROBLEM TO FIX
 ## 1) 패킷 송수신
 - ### 현재 상황
