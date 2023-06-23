@@ -203,7 +203,7 @@ bool SerialPort :: writePacket(const QString &Packet)
     if (mSerial->isOpen()){
         qDebug() << "PACKET SENDING: " << Packet;
         bytesWritten = mSerial->write(cstr);
-        mSerial->waitForReadyRead(500);
+        //mSerial->waitForReadyRead(500);
         return true;
     }
 

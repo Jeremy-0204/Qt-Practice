@@ -29,7 +29,6 @@ bool SuperlumBS840 :: connectPort(const QString &portName, int baudRate, const Q
     RequestDeviceStatus();
     RequestDeviceParam();
 
-
     return mbConnected;
 }
 
@@ -132,16 +131,6 @@ bool SuperlumBS840::setPauseTime(const QString pause)
     return sendPacket(Stream.str().c_str());
 }
 
-//ESuperlumLaserSweepMode SuperlumBS840::SetQStringToEnum(const QString SweepMode){
-//    if (SweepMode == "SingleTone"){
-//        return ESuperlumLaserSweepMode::SingleTone;
-//    }
-
-//    else if (SweepMode == "SingleSweep"){
-//        return
-//    }
-//}
-
 bool SuperlumBS840::setSweptMode(const int SweptMode)
 {
     if (SweptMode == mSweepMode)
@@ -167,7 +156,6 @@ bool SuperlumBS840::setSweptMode(const int SweptMode)
     return false;
 }
 
-//bool SuperlumBS840::setControlMode(const ESuperlumLaserControlMode ControlMode)
 bool SuperlumBS840::setControlMode(const int ControlMode)
 {
     if (ControlMode == mSuperlumParam.ControlMode)
@@ -247,14 +235,13 @@ bool SuperlumBS840::RequestDeviceParam()
         sendPacket("P23\r\n") &&
         sendPacket("P24\r\n") &&
         sendPacket("P25\r\n") &&
-        sendPacket("P26\r\n")*/;
+        sendPacket("P26\r\n");*/
 }
 
 void SuperlumBS840 :: handleReadyRead()
 {
     //qDebug() << "\nHANDLE READY READ CALLED";
     //mDataRead = mSerialPort.mSerial->readLine();
-
 
     static QByteArray receivedData;  // 수신한 데이터를 누적할 변수
 
