@@ -201,7 +201,7 @@ bool SerialPort :: writePacket(const QString &Packet)
     const char * cstr = Packet.toUtf8().constData();
 
     if (mSerial->isOpen()) {
-        qDebug() << "PACKET SENDING: " << cstr;
+        qDebug() << "PACKET SENDING: " << Packet;
         bytesWritten = mSerial->write(cstr);
 
         if (bytesWritten == -1) {
