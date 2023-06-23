@@ -184,6 +184,7 @@ bool SuperlumBS840::setControlMode(const int ControlMode)
 bool SuperlumBS840 :: sendPacket(const QString &Packet)
 {
     mbWritten = mSerialPort.writePacket(Packet);
+    mSerialPort.mSerial->waitForReadyRead(50);
     return mbWritten;
 }
 
@@ -240,7 +241,7 @@ bool SuperlumBS840::RequestDeviceParam()
 
 void SuperlumBS840 :: handleReadyRead()
 {
-    //qDebug() << "\nHANDLE READY READ CALLED";
+    qDebug() << "\nHANDLE READY READ CALLED";
     //mDataRead = mSerialPort.mSerial->readLine();
 
     static QByteArray receivedData;  // 수신한 데이터를 누적할 변수

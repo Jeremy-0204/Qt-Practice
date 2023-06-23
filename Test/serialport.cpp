@@ -7,8 +7,6 @@ SerialPort::SerialPort(QObject *parent)
 {
     // QSerialPort 객체 초기화
     refreshAvailablePorts();
-    //connect(mSerial, &QSerialPort::readyRead, this, &SerialPort::handleReadyRead);
-
 }
 
 QStringList SerialPort::availablePorts() const
@@ -208,14 +206,6 @@ bool SerialPort :: writePacket(const QString &Packet)
             // Handle write error
             return false;
         }
-
-        if (!mSerial->waitForReadyRead(5000)) {
-            // Handle timeout
-            return false;
-        }
-
-        // Read and handle the response here using mSerial->read() or other appropriate methods
-
         return true;
     }
 
