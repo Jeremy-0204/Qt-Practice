@@ -200,16 +200,25 @@ bool SerialPort :: writePacket(const QString &Packet)
 
     const char * cstr = Packet.toUtf8().constData();
 
-    if (mSerial->isOpen()){
-        qDebug() << "PACKET SENDING: " << Packet;
+    if (mSerial->isOpen()) {
+        qDebug() << "PACKET SENDING: " << cstr;
         bytesWritten = mSerial->write(cstr);
-        //mSerial->waitForReadyRead(500);
+
+        if (bytesWritten == -1) {
+            // Handle write error
+            return false;
+        }
+
+        if (!mSerial->waitForReadyRead(5000)) {
+            // Handle timeout
+            return false;
+        }
+
+        // Read and handle the response here using mSerial->read() or other appropriate methods
+
         return true;
     }
 
-    else
-    {
-        qDebug() << "PORT IS NOT OPENED";
-        return false;
-    }
+    // Handle serial port not open
+    return false;
 }
