@@ -16,9 +16,9 @@ Window {
         id: serialPort
     }
 
-    SuperlumBS840
+    SuperlumBS840VM
     {
-        id: superlumBS840
+        id: superlumBS840VM
     }
 
     Loader
@@ -57,7 +57,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840.powerOn()
+                        superlumBS840VM.powerOn()
                     }
                 }
 
@@ -67,7 +67,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840.powerOff()
+                        superlumBS840VM.powerOff()
                     }
                 }
 
@@ -77,7 +77,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840.laserOn()
+                        superlumBS840VM.laserOn()
                     }
                 }
 
@@ -87,7 +87,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840.laserOff()
+                        superlumBS840VM.laserOff()
                     }
                 }
             }
