@@ -31,9 +31,6 @@ public:
     bool setSweptMode(const int SweptMode);
     bool setControlMode(const int ControlMode);
 
-
-
-
 public slots:
     void handleReadyRead();
 

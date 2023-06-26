@@ -57,7 +57,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840VM.powerOn()
+                        superlumBS840VM.onClickedPowerOn()
                     }
                 }
 
@@ -67,7 +67,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840VM.powerOff()
+                        superlumBS840VM.onClickedPowerOff()
                     }
                 }
 
@@ -77,7 +77,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840VM.laserOn()
+                        superlumBS840VM.onClickedLaserOn()
                     }
                 }
 
@@ -87,7 +87,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     onClicked:
                     {
-                        superlumBS840VM.laserOff()
+                        superlumBS840VM.onClickedLaserOff()
                     }
                 }
             }
