@@ -55,5 +55,9 @@ QML에서 Superlum 클래스와 직접 연동되는 부분들을 모아서 정�
 - SuperlumBS840을 ViewModel로, SerialPort 클래스를 Model의 개념으로 설계를 한 상황.  
 - SuperlumBS840도 Model이 아닌가? 외부 사람들이 보면 SerialPort 클래스 존재 자체를 모르고 있을 수도 있음.  
 - 더욱 명확한 분리를 위해 SuperlumBS840 역시 Model로 만들고 이에 따른 ViewModel을 추가하자.  
+- Model은 철저히 분리되어야 한다.
 
 ## 3) TODO
+- SuperlumBS840 클래스의 모든 메소드를 Q_INVOKABLE 없이 구현하기
+- 버튼을 누를때마다 ViewModel에 이런 버튼이 눌렸다 정도의 시그널만 보내면 ViewModel은 그제야 SuperlumBS840 메소드를 호출하게 구현하기.
+- Static으로 시리얼 포트 매개변수들 나오게 구현하기
