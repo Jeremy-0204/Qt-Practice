@@ -16,11 +16,6 @@ SuperlumBS840 :: SuperlumBS840(QObject *parent) : MGenSweepLaser(parent), mSeria
 SuperlumBS840 :: ~SuperlumBS840()
 {}
 
-void SuperlumBS840 :: signalslotTest()
-{
-    qDebug() << "SUPERLUM SLOT CALLED FROM SINGLETONE QML";
-}
-
 bool SuperlumBS840 :: connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits)
 {
     mbConnected = mSerialPort.connectToPort(portName, baudRate, flowControl, parity, dataBits, stopBits);
