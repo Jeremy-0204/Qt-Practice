@@ -7,6 +7,15 @@
 
 ## QT 개념정리
 ### 1) Flow
+- QGuiApplication 객체 생성, Qt 애플리케이션 초기화
+- QQmlApplication 객체 생성, QML 파일 업로드 및 실행 역할
+- 작성한 클래스를 QML 엔진의 타입으로 등록
+- 로드할 QML URL 지정
+- QQmlApplication 객체 생성 실패시 objectCreationFailed 시그널 발생, QGuiApplication의 slot인 exit 함수로 애플리케이션 종료
+- QML 로드
+- 이벤트 루프 실행
+
+
 ```
 int main(int argc, char *argv[])
 {
