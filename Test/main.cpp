@@ -13,10 +13,6 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterType<SerialPort>("SerialPort", 1, 0, "SerialPort");
-//    SuperlumBS840 mySuperlumBS840; // SuperlumBS840 인스턴스 생성
-
-    // QML 컨텍스트에 SuperlumBS840 인스턴스 등록
-//    engine.rootContext()->setContextProperty("SuperlumBS840", &mySuperlumBS840);
     qmlRegisterType<SuperlumBS840>("SuperlumBS840", 1, 0, "SuperlumBS840");
 
     const QUrl url(QStringLiteral("qrc:/Test/Main.qml"));
