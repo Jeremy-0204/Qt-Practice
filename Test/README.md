@@ -48,8 +48,12 @@ QML에서 Superlum 클래스와 직접 연동되는 부분들을 모아서 정�
 
 ## 1) Static
 - QML에서 클래스 인스턴스 생성시 SuperlumBS840, SerialPort 각각에 대한 객체를 별개로 생성중  
-SerialPort 클래스 인스턴스는 단순히 Serial 통신시 필요한 QSerialPort 내부의 enum 목록을 보여주기 위함임.  
-Static 변수로 선언하여 불필요한 과정을 줄이자.    
+- SerialPort 클래스 인스턴스는 단순히 Serial 통신시 필요한 QSerialPort 내부의 enum 목록을 보여주기 위함임.  
+- Static 변수로 선언하여 불필요한 과정을 줄이자.    
 
 ## 2) ViewModel
+- SuperlumBS840을 ViewModel로, SerialPort 클래스를 Model의 개념으로 설계를 한 상황.  
+- SuperlumBS840도 Model이 아닌가? 외부 사람들이 보면 SerialPort 클래스 존재 자체를 모르고 있을 수도 있음.  
+- 더욱 명확한 분리를 위해 SuperlumBS840 역시 Model로 만들고 이에 따른 ViewModel을 추가하자.  
+
 ## 3) TODO
