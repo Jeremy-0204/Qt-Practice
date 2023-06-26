@@ -43,8 +43,6 @@ Item {
             onClicked: {
                 superlumBS840.setSweptMode(0)
                 superlumBS840.setSingleToneWaveLength(textField.text)
-                item1.signalfromSingleTone.connect(superlumBS840, superlumBS840.signalslotTest)
-                item1.singalfromSingleTone
             }
         }
     }

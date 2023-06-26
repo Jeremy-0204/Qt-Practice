@@ -94,12 +94,6 @@ Window {
                 text: "Close"
                 onClicked: superlumBS840.close()
             }
-
-            Button {
-                text: "Write"
-                onClicked:
-                    superlumBS840.sendPacket("Hello, world!")
-            }
         }
     }
 
