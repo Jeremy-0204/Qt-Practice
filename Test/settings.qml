@@ -80,7 +80,7 @@ Window {
                     var selectedParity = parityComboBox.model[parityComboBox.currentIndex]
                     var selectedDataBits = dataBitsComboBox.model[dataBitsComboBox.currentIndex]
                     var selectedStopBits = stopBitsComboBox.model[stopBitsComboBox.currentIndex]
-                    superlumBS840VM.connectPort(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
+                    superlumBS840VM.onClickedConnect(selectedPort, selectedBaudRate, selectedFlowControl, selectedParity, selectedDataBits, selectedStopBits)
                 }
             }
 
@@ -92,7 +92,7 @@ Window {
 
             Button {
                 text: "Close"
-                onClicked: superlumBS840VM.close()
+                onClicked: superlumBS840VM.onClickedClose()
             }
         }
     }

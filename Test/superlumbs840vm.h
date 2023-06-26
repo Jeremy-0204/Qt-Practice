@@ -3,7 +3,7 @@
 
 MGEN_NAMESPACE_START
 
-class SuperlumBS840VM
+class SuperlumBS840VM : public QObject
 {
     Q_OBJECT
 

@@ -3,7 +3,7 @@ import QtQuick.Window
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.15
 import SerialPort 1.0
-import SuperlumBS840 1.0
+import SuperlumBS840VM 1.0
 
 Window {
     id: windows
