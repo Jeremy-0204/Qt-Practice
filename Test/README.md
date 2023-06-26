@@ -41,3 +41,11 @@ QML에서 Superlum 클래스와 직접 연동되는 부분들을 모아서 정�
 해당 ViewModel 클래스로 QML 연동하기  
 
 근데 SuperlumBS840 클래스는 MGenSweeplaser를 상속받아서 오버라이딩을 하는데, SuperlumBS840의 기존에 오버라이딩 되던 함수들을 별개의 함수로 만들고 오버라이딩은 viewModel 클래스에서 상속받아와서 선언하면 될까??  
+
+
+# "23.06.26 MON CODE REVIEW
+6월 26일 기준 선임연구원님께 받은 코드리뷰 내용입니다.  
+
+## 1) Static
+## 2) ViewModel
+## 3) TODO
