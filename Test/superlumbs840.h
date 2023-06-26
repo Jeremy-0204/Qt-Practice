@@ -14,8 +14,8 @@ public:
     virtual ~SuperlumBS840();
 
     Q_INVOKABLE virtual bool connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits);
-    Q_INVOKABLE bool close();
-    Q_INVOKABLE bool sendPacket(const QString &Packet);
+    Q_INVOKABLE virtual bool close();
+    Q_INVOKABLE virtual bool sendPacket(const QString &Packet);
 
     Q_INVOKABLE bool setSingleToneWaveLength(const QString waveLength);
     Q_INVOKABLE bool setStartWaveLength(const QString WaveLength);
