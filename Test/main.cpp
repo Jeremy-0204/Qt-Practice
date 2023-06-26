@@ -1,8 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QQmlContext> // 이 부분 추가
 #include <QQmlEngine>
-#include "serialport.h"
 #include "superlumbs840VM.h"
 
 MGEN_NAMESPACE_USE;

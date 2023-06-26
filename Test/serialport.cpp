@@ -156,15 +156,14 @@ bool SerialPort::connectToPort(const QString &portName, int baudRate, const QStr
 
     qDebug() << "CONNECTED CALLED";
 
-    if (mSerial->open(QIODevice::ReadWrite)) {
+    if (mSerial->open(QIODevice::ReadWrite))
+    {
         qDebug() << "CONNECTED";
-
-        // 시리얼 포트 열기 실패한 경우의 로직
-        // 연결에 실패했음을 사용자에게 알릴 수 있습니다.
         return true;
-    } else {
-        // 시리얼 포트가 성공적으로 열렸을 때의 로직
-        // 연결된 시리얼 포트 사용 가능
+    }
+
+    else
+    {
         qDebug() << "FAILED: " << mSerial->error() << mSerial->errorString();
         qDebug() << "현재 포트의 매개변수는 :\n"
                  << "Port Name : " << mSerial->portName() << "\n"

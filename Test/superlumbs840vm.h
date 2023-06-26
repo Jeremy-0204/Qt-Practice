@@ -14,7 +14,7 @@ public:
 // * 필요한 함수 모음
     Q_INVOKABLE bool onClickedConnect(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits);
     Q_INVOKABLE bool onClickedClose();
-    //Q_INVOKABLE bool onClickedRefresh();
+
     Q_INVOKABLE bool onClickedPowerOn();
     Q_INVOKABLE bool onClickedPowerOff();
     Q_INVOKABLE bool onClickedLaserOn();

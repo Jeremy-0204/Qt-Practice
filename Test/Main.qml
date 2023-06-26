@@ -11,15 +11,12 @@ Window {
     height: 300
 
     SuperlumBS840VM
-    {
-        id: superlumBS840VM
-    }
+    { id: superlumBS840VM}
 
     Loader
     { id: mainLoader }
 
     RowLayout
-
     {
         spacing: 0
 

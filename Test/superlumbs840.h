@@ -49,6 +49,7 @@ public slots:
     void handleReadyRead();
 
 private:
+    void initialize();
 
     bool RequestDeviceName();
     bool RequestDeviceStatus();
@@ -62,9 +63,6 @@ private:
     SerialPort mSerialPort;
     SuperlumLaserParam mSuperlumParam;
     QByteArray mDataRead;
-    void initialize();
-
-
 };
 
 MGEN_NAMESPACE_END
