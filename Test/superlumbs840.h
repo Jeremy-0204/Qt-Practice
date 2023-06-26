@@ -13,23 +13,25 @@ public:
     explicit SuperlumBS840(QObject *parent = nullptr);
     virtual ~SuperlumBS840();
 
-    Q_INVOKABLE virtual bool connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits);
-    Q_INVOKABLE virtual bool close();
-    Q_INVOKABLE virtual bool sendPacket(const QString &Packet);
+    virtual bool connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits);
+    virtual bool close();
+    virtual bool sendPacket(const QString &Packet);
 
-    Q_INVOKABLE bool setSingleToneWaveLength(const QString waveLength);
-    Q_INVOKABLE bool setStartWaveLength(const QString WaveLength);
-    Q_INVOKABLE bool setStopWaveLength(const QString WaveLength);
-    Q_INVOKABLE bool setSweptSpeed(const QString sweptSpeed);
-    Q_INVOKABLE bool setPauseTime(const QString Pause);
-    Q_INVOKABLE bool setSweptMode(const int SweptMode);
-    Q_INVOKABLE bool setControlMode(const int ControlMode);
+    virtual bool powerOn();
+    virtual bool powerOff();
 
-    Q_INVOKABLE virtual bool powerOn();
-    Q_INVOKABLE virtual bool powerOff();
+    virtual bool laserOn();
+    virtual bool laserOff();
 
-    Q_INVOKABLE virtual bool laserOn();
-    Q_INVOKABLE virtual bool laserOff();
+    bool setSingleToneWaveLength(const QString waveLength);
+    bool setStartWaveLength(const QString WaveLength);
+    bool setStopWaveLength(const QString WaveLength);
+    bool setSweptSpeed(const QString sweptSpeed);
+    bool setPauseTime(const QString Pause);
+    bool setSweptMode(const int SweptMode);
+    bool setControlMode(const int ControlMode);
+
+
 
 
 public slots:
@@ -43,9 +45,6 @@ private:
     void ParseDataI(const char* Data, const int Size);
     void ParseDataM(const char* Data, const int Size);
     void ParseDataP(const char* Data, const int Size);
-
-    QObject* mSingleton;
-
 
 private:
     SerialPort mSerialPort;
