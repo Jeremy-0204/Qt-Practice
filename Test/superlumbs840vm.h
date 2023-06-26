@@ -20,13 +20,17 @@ public:
     Q_INVOKABLE bool onClickedLaserOn();
     Q_INVOKABLE bool onClickedLaserOff();
 
-    Q_INVOKABLE bool OnClickedSetSingleToneWaveLength(const QString WaveLength);
-    Q_INVOKABLE bool OnClickedSetStartWaveLength(const QString WaveLength);
-    Q_INVOKABLE bool OnClickedSetStopWaveLength(const QString WaveLength);
-    Q_INVOKABLE bool OnClickedSetSweptSpeed(const QString sweptSpeed);
-    Q_INVOKABLE bool OnClickedSetPauseTime(const QString Pause);
-    Q_INVOKABLE bool OnClickedSetSweptMode(const int SweptMode);
-    Q_INVOKABLE bool OnClickedSetControlMode(const int ControlMode);
+    Q_INVOKABLE bool onClickedSetSingleTone(const int SweptMode, const QString WaveLength);
+    Q_INVOKABLE bool onClickedSetSingleSwept(const int SweptMode, const QString StartWaveLength, const QString StopWaveLength, const QString SweptSpeed);
+    Q_INVOKABLE bool onClickedSetContinuousSwept(const int SweptMode, const QString StartWaveLength, const QString StopWaveLength, const QString SweptSpeed, const QString Pause);
+
+//    Q_INVOKABLE bool onClickedSetSingleToneWaveLength(const QString WaveLength);
+//    Q_INVOKABLE bool onClickedSetStartWaveLength(const QString WaveLength);
+//    Q_INVOKABLE bool onClickedSetStopWaveLength(const QString WaveLength);
+//    Q_INVOKABLE bool onClickedSetSweptSpeed(const QString sweptSpeed);
+//    Q_INVOKABLE bool onClickedSetPauseTime(const QString Pause);
+//    Q_INVOKABLE bool onClickedSetSweptMode(const int SweptMode);
+//    Q_INVOKABLE bool onClickedSetControlMode(const int ControlMode);
 
 private:
     SuperlumBS840 mSuperlumBS840;

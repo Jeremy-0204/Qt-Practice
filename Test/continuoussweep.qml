@@ -96,11 +96,7 @@ Item {
             text: "Save"
             onClicked:
             {
-                superlumBS840.setSweptMode(2)
-                superlumBS840.setStartWaveLength(startWaveLength.text)
-                superlumBS840.setStopWaveLength(endWaveLength.text)
-                superlumBS840.setSweptSpeed(sweepSpeedInput.text)
-                superlumBS840.setPauseTime(pauseInput.text)
+                superlumBS840VM.onClickedSetContinuousSwept(2, startWaveLength.text, endWaveLength.text, sweepSpeedInput.text, pauseInput.text)
             }
             // onClicekd()에 Signal 호출
             // 입력한 값들 모두 cpp에 저장, 저장되면 send packet 호출
