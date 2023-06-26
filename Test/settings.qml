@@ -74,7 +74,7 @@ Window {
             Button {
                 text: "Connect"
                 onClicked: {
-                    var selectedPort = superlumBS840VM.onClickedRefresh[portListView.currentIndex]
+                    var selectedPort = portListView.model[portListView.currentIndex]
                     var selectedBaudRate = baudRateComboBox.model[baudRateComboBox.currentIndex]
                     var selectedFlowControl = flowControlComboBox.model[flowControlComboBox.currentIndex]
                     var selectedParity = parityComboBox.model[parityComboBox.currentIndex]
@@ -86,7 +86,7 @@ Window {
 
             Button {
                 text: "Refresh"
-                onClicked: serialPort.refreshAvailablePorts()
+                onClicked: superlumBS840VM.onClickedRefresh()
             }
 
 
