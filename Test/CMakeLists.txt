@@ -14,6 +14,7 @@ qt_add_executable(appTest
     MGenSweepLaser.h MGenSweepLaser.cpp
     serialport.h serialport.cpp
     superlumbs840.h superlumbs840.cpp
+    superlumbs840vm.h superlumbs840vm.cpp
 )
 
 qt_add_qml_module(appTest
