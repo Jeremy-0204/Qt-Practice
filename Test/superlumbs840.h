@@ -31,10 +31,25 @@ public:
     bool setSweptMode(const int SweptMode);
     bool setControlMode(const int ControlMode);
 
+    QStringList AvailablePorts();
+    QStringList GetBaudRates();
+    QStringList GetFlowControls();
+    QStringList GetParityOptions();
+    QStringList GetDataBits();
+    QStringList GetStopBits();
+
+    // 여기서 SerialPort 메서드 호출하고 static 변수로 선언하면, VM에서
+    static QStringList mBaudRates;
+    static QStringList mFlowControls;
+    static QStringList mParityOptions;
+    static QStringList mDataBits;
+    static QStringList mStopBits;
+
 public slots:
     void handleReadyRead();
 
 private:
+
     bool RequestDeviceName();
     bool RequestDeviceStatus();
     bool RequestDeviceParam();
@@ -47,6 +62,9 @@ private:
     SerialPort mSerialPort;
     SuperlumLaserParam mSuperlumParam;
     QByteArray mDataRead;
+    void initialize();
+
+
 };
 
 MGEN_NAMESPACE_END

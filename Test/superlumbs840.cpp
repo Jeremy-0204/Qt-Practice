@@ -10,11 +10,26 @@ MGEN_NAMESPACE_START
 SuperlumBS840 :: SuperlumBS840(QObject *parent) : MGenSweepLaser(parent), mSerialPort()
 {
     connect(mSerialPort.mSerial, &QSerialPort::readyRead, this, &SuperlumBS840::handleReadyRead);
+    initialize();
 }
-
 
 SuperlumBS840 :: ~SuperlumBS840()
 {}
+
+QStringList SuperlumBS840 :: mBaudRates;
+QStringList SuperlumBS840 :: mFlowControls;
+QStringList SuperlumBS840 :: mParityOptions;
+QStringList SuperlumBS840 :: mDataBits;
+QStringList SuperlumBS840 :: mStopBits;
+
+void SuperlumBS840 :: initialize()
+{
+    mBaudRates = mSerialPort.baudRates();
+    mFlowControls = mSerialPort.flowControls();
+    mParityOptions = mSerialPort.parityOptions();
+    mDataBits = mSerialPort.dataBits();
+    mStopBits = mSerialPort.stopBits();
+}
 
 bool SuperlumBS840 :: connectPort(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits)
 {
@@ -212,32 +227,41 @@ bool SuperlumBS840::RequestDeviceParam()
     sendPacket("P24\r\n");
     sendPacket("P25\r\n");
     sendPacket("P26\r\n");
+}
 
-    /*
-    return (
-        sendPacket("P01\r\n") &&
-        sendPacket("P02\r\n") &&
-        sendPacket("P03\r\n") &&
-        sendPacket("P04\r\n") )&&
-        sendPacket("P07\r\n") &&
+QStringList SuperlumBS840 :: AvailablePorts()
+{
+    return mSerialPort.availablePorts();
+}
 
-        sendPacket("P10\r\n") &&
-        sendPacket("P11\r\n") &&
-        sendPacket("P12\r\n") &&
+QStringList SuperlumBS840 :: GetBaudRates()
+{
+    return mBaudRates;
+}
 
-        sendPacket("P20\r\n") &&
-        sendPacket("P21\r\n") &&
-        sendPacket("P22\r\n") &&
-        sendPacket("P23\r\n") &&
-        sendPacket("P24\r\n") &&
-        sendPacket("P25\r\n") &&
-        sendPacket("P26\r\n");*/
+QStringList SuperlumBS840 :: GetFlowControls()
+{
+    return mFlowControls;
+}
+
+QStringList SuperlumBS840 :: GetParityOptions()
+{
+    return mParityOptions;
+}
+
+QStringList SuperlumBS840 :: GetDataBits()
+{
+    return mDataBits;
+}
+
+QStringList SuperlumBS840 :: GetStopBits()
+{
+    return mStopBits;
 }
 
 void SuperlumBS840 :: handleReadyRead()
 {
     qDebug() << "\nHANDLE READY READ CALLED";
-    //mDataRead = mSerialPort.mSerial->readLine();
 
     static QByteArray receivedData;  // 수신한 데이터를 누적할 변수
 

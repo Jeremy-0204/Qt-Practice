@@ -27,7 +27,7 @@ Window {
             id: portListView
             width: 180
             model: {
-                   var model = serialPort.availablePorts
+                   var model = superlumBS840VM.onClickedRefresh()
                    model
                }
         }
@@ -35,35 +35,35 @@ Window {
         ComboBox {
             id: baudRateComboBox
             width: 180
-            model: serialPort.baudRates
+            model: superlumBS840VM.onBaudRates()
             currentIndex: 0
         }
 
         ComboBox {
             id: flowControlComboBox
             width: 180
-            model: serialPort.flowControls
+            model: superlumBS840VM.onFlowControls()
             currentIndex: 0
         }
 
         ComboBox {
             id: parityComboBox
             width: 180
-            model: serialPort.parityOptions
+            model: superlumBS840VM.onParityOptions()
             currentIndex: 0
         }
 
         ComboBox {
             id: dataBitsComboBox
             width: 180
-            model: serialPort.dataBits
+            model: superlumBS840VM.onDataBits()
             currentIndex: 0
         }
 
         ComboBox {
             id: stopBitsComboBox
             width: 180
-            model: serialPort.stopBits
+            model: superlumBS840VM.onStopBits()
             currentIndex: 0
         }
 
@@ -74,7 +74,7 @@ Window {
             Button {
                 text: "Connect"
                 onClicked: {
-                    var selectedPort = serialPort.availablePorts[portListView.currentIndex]
+                    var selectedPort = superlumBS840VM.onClickedRefresh[portListView.currentIndex]
                     var selectedBaudRate = baudRateComboBox.model[baudRateComboBox.currentIndex]
                     var selectedFlowControl = flowControlComboBox.model[flowControlComboBox.currentIndex]
                     var selectedParity = parityComboBox.model[parityComboBox.currentIndex]

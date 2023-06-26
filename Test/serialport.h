@@ -11,12 +11,6 @@ using namespace std;
 class SerialPort : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList availablePorts READ availablePorts NOTIFY availablePortsChanged)
-    Q_PROPERTY(QStringList baudRates READ baudRates CONSTANT)
-    Q_PROPERTY(QStringList flowControls READ flowControls CONSTANT)
-    Q_PROPERTY(QStringList parityOptions READ parityOptions CONSTANT)
-    Q_PROPERTY(QStringList dataBits READ dataBits CONSTANT)
-    Q_PROPERTY(QStringList stopBits READ stopBits CONSTANT)
 
 public:
     explicit SerialPort(QObject *parent = nullptr);

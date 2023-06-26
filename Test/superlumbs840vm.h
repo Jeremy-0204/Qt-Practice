@@ -24,13 +24,12 @@ public:
     Q_INVOKABLE bool onClickedSetSingleSwept(const int SweptMode, const QString StartWaveLength, const QString StopWaveLength, const QString SweptSpeed);
     Q_INVOKABLE bool onClickedSetContinuousSwept(const int SweptMode, const QString StartWaveLength, const QString StopWaveLength, const QString SweptSpeed, const QString Pause);
 
-//    Q_INVOKABLE bool onClickedSetSingleToneWaveLength(const QString WaveLength);
-//    Q_INVOKABLE bool onClickedSetStartWaveLength(const QString WaveLength);
-//    Q_INVOKABLE bool onClickedSetStopWaveLength(const QString WaveLength);
-//    Q_INVOKABLE bool onClickedSetSweptSpeed(const QString sweptSpeed);
-//    Q_INVOKABLE bool onClickedSetPauseTime(const QString Pause);
-//    Q_INVOKABLE bool onClickedSetSweptMode(const int SweptMode);
-//    Q_INVOKABLE bool onClickedSetControlMode(const int ControlMode);
+    Q_INVOKABLE QStringList onClickedRefresh();
+    Q_INVOKABLE QStringList onBaudRates();
+    Q_INVOKABLE QStringList onFlowControls();
+    Q_INVOKABLE QStringList onParityOptions();
+    Q_INVOKABLE QStringList onDataBits();
+    Q_INVOKABLE QStringList onStopBits();
 
 private:
     SuperlumBS840 mSuperlumBS840;

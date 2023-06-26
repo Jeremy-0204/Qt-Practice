@@ -7,6 +7,38 @@ SuperlumBS840VM :: SuperlumBS840VM(QObject *parent) : mSuperlumBS840()
 SuperlumBS840VM :: ~SuperlumBS840VM()
 {}
 
+
+QStringList SuperlumBS840VM :: onClickedRefresh()
+{
+    return mSuperlumBS840.AvailablePorts();
+}
+
+QStringList SuperlumBS840VM :: onBaudRates()
+{
+    return mSuperlumBS840.GetBaudRates();
+}
+
+QStringList SuperlumBS840VM :: onFlowControls()
+{
+    return mSuperlumBS840.GetFlowControls();
+}
+
+QStringList SuperlumBS840VM :: onParityOptions()
+{
+    return mSuperlumBS840.GetParityOptions();
+}
+
+QStringList SuperlumBS840VM :: onDataBits()
+{
+    return mSuperlumBS840.GetDataBits();
+}
+
+QStringList SuperlumBS840VM :: onStopBits()
+{
+    return mSuperlumBS840.GetStopBits();
+}
+
+
 bool SuperlumBS840VM :: onClickedConnect(const QString &portName, int baudRate, const QString &flowControl, const QString &parity, const QString &dataBits, const QString &stopBits)
 {
     return mSuperlumBS840.connectPort(portName, baudRate, flowControl, parity, dataBits, stopBits);
@@ -16,9 +48,6 @@ bool SuperlumBS840VM :: onClickedClose()
 {
     return mSuperlumBS840.close();
 }
-
-//bool SuperlumBS840VM :: onClickedRefresh()
-//{}
 
 bool SuperlumBS840VM :: onClickedPowerOn()
 {

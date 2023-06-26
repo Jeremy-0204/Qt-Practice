@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Window
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.15
-import SerialPort 1.0
 import SuperlumBS840VM 1.0
 
 Window {
@@ -10,11 +9,6 @@ Window {
     visible: true
     width: 400
     height: 300
-
-    SerialPort
-    {
-        id: serialPort
-    }
 
     SuperlumBS840VM
     {

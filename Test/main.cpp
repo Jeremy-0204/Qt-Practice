@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    qmlRegisterType<SerialPort>("SerialPort", 1, 0, "SerialPort");
     qmlRegisterType<SuperlumBS840VM>("SuperlumBS840VM", 1, 0, "SuperlumBS840VM");
 
     const QUrl url(QStringLiteral("qrc:/Test/Main.qml"));
