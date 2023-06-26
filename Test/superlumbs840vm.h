@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE bool onClickedLaserOn();
     Q_INVOKABLE bool onClickedLaserOff();
 
-    Q_INVOKABLE bool OnClickedSetSingleToneWaveLength(const QString waveLength);
+    Q_INVOKABLE bool OnClickedSetSingleToneWaveLength(const QString WaveLength);
     Q_INVOKABLE bool OnClickedSetStartWaveLength(const QString WaveLength);
     Q_INVOKABLE bool OnClickedSetStopWaveLength(const QString WaveLength);
     Q_INVOKABLE bool OnClickedSetSweptSpeed(const QString sweptSpeed);

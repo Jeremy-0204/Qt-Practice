@@ -40,4 +40,39 @@ bool SuperlumBS840VM :: onClickedLaserOff()
     return mSuperlumBS840.laserOff();
 }
 
+bool SuperlumBS840VM :: onClickedSetSingleToneWaveLength(const QString WaveLength)
+{
+    return mSuperlumBS840.setSingleToneWaveLength(WaveLength);
+}
+
+bool SuperlumBS840VM :: onClickedSetStartWaveLength(const QString WaveLength)
+{
+    return mSuperlumBS840.setStartWaveLength(WaveLength);
+}
+
+bool SuperlumBS840VM :: onClickedSetStopWaveLength(const QString WaveLength)
+{
+    return mSuperlumBS840.setStopWaveLength(WaveLength);
+}
+
+bool SuperlumBS840VM :: onClickedSetSweptSpeed(const QString sweptSpeed)
+{
+    return mSuperlumBS840.setSweptSpeed(sweptSpeed);
+}
+
+bool SuperlumBS840VM :: onClickedSetPauseTime(const QString Pause)
+{
+    return mSuperlumBS840.setPauseTime(Pause);
+}
+
+bool SuperlumBS840VM :: onClickedSetSweptMode(const int SweptMode)
+{
+    return mSuperlumBS840.setSweptMode(SweptMode);
+}
+
+bool SuperlumBS840VM :: onClickedSetControlMode(const int ControlMode)
+{
+    return mSuperlumBS840.setControlMode(ControlMode);
+}
+
 MGEN_NAMESPACE_END
