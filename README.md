@@ -6,7 +6,7 @@
 - https://github.com/Jeremy-0204/Qt_Practice/tree/main/Test
 
 ## QT 개념정리
-### 1) Flow
+### 1) QT 프로그램 생성 및 실행 원리
 - QGuiApplication 객체 생성, Qt 애플리케이션 초기화
 - QQmlApplication 객체 생성, QML 파일 업로드 및 실행 역할
 - 작성한 클래스를 QML 엔진의 타입으로 등록
@@ -14,6 +14,12 @@
 - QQmlApplication 객체 생성 실패시 objectCreationFailed 시그널 발생, QGuiApplication의 slot인 exit 함수로 애플리케이션 종료
 - QML 로드
 - 이벤트 루프 실행
+
+### 2) Signal, Slot - Q_PROPERTY, Q_INVOKABLE
+
+### 3) MVVM Pattern
+
+### 4) Serial Communication
 
 
 ```
