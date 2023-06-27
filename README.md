@@ -34,6 +34,7 @@ Model의 QML, View와 ViewModel은 CPP으로 개발할 수 있다.
 MVVM 패턴의 적용을 위해서는 View와 ViewModel 간의 Binding이 필요함.  
 이때 사용하는 것이 Signal, Slot의 개념이다.  
 
+
 간단한 예시:
 - https://forum.qt.io/topic/143391/mvvm-example-with-qt-qml-c
 - C++ 과 Qt/QML을 이용한 개발 - 008: (Quantum Jump-1)주소록 프로그램- 3. C++ 연동과 MVVM Pattern (https://dev-optimist.tistory.com/46)
@@ -55,7 +56,9 @@ Qml프로그래밍 cpp qml 연동3(qml 에서 C++ 함수 호출하기)
 - https://youonlyliveonce1.tistory.com/26
 
 ### **6) 그 외의 cpp, qml 연동방법**  
-Signal Slot을 사용하지 않고도 Q_INVOKABLE, Q_PROPERTY로 cpp에서 정의된 메소드와 멤버변수에 qml에서 접근하는 방법도 존재한다.  
+Signal Slot을 사용하지 않고도 Q_INVOKABLE, Q_PROPERTY로 cpp에서 정의된 메소드와 멤버변수에 qml에서 접근하는 방법도 존재한다. Cpp 클래스를 메인함수에서 qml에서 사용가능하게 만들 수 있는 방법이 2가지 존재한다. qmlRegisterType을 사용하면 QMl에서 직접 인스턴스를 생성하고 메소드나 프로퍼티에 접근할 수 있음.  
+
+다른 방법은 engine.rootContext로 미리 생성된 객체를 QML에서 참조하는 방식으로 사용된다.  
 
 QML/C++ 통합하기(Q_PROPERTY, Q_INVOKABLE, SIGNAL)  
 https://1d1cblog.tistory.com/494
@@ -63,10 +66,26 @@ https://1d1cblog.tistory.com/494
 ### 7) QSerialPort
 Qt에는 자체적으로 시리얼 통신을 위한 QSerialPort, QSerialPortInfo 모듈이 존재함.  
 https://doc.qt.io/qt-5/qserialport.html  
-https://doc.qt.io/qt-5/qserialportinfo.html
+https://doc.qt.io/qt-5/qserialportinfo.html  
+
+해당 클래스를 사용하려면 Cmake, qmake에서는 직접 모듈을 추가해주어야 함.  
+https://doc.qt.io/qt-6/qtserialport-index.html
 
 SuperlumBS840 통신 구현의 경우 QSerialPort 클래스의 인스턴스를 멤버변수로 선언하여 해당 인스턴스의 멤버 함수들을 호출하는 별개의 SerialPort 클래스를 구현했다.  
 
 
+## 2. SuperlumBS840 구현
+### **1) 클래스 구성**
+main.cpp, superlumbs840vm.cpp, superlumbs840.cpp, serialport.cpp, MGenSweepLaser.cpp 
+
+### **2) QML 구성**
+main.qml -> settings.qml, singletone.qml, singlesweep.qml, continuousesweep.qml
+
+### **3) 전반적인 FLow**
+model -> SuperlumBS840, SerialPort  
+ViewModel -> SuperlumBS840VM   
+View -> 그 외 모두들  
+
+QML에서는 ViewModel인 SuperlumBS840VM 클래스와만 소통한다. SuperlumBS840VM의 메소드는 모두 Q_INVOKABLE로 선언되어 있으며 해당 메소드 호출시 SuperlumBS840의 클래스 멤버 메소드를 호출하여 Model에 접근한다.  
 
 
