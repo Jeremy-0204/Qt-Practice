@@ -34,26 +34,38 @@ Model의 QML, View와 ViewModel은 CPP으로 개발할 수 있다.
 MVVM 패턴의 적용을 위해서는 View와 ViewModel 간의 Binding이 필요함.  
 이때 사용하는 것이 Signal, Slot의 개념이다.  
 
-    간단한 예시:
-    - https://forum.qt.io/topic/143391/mvvm-example-with-qt-qml-c
+간단한 예시:
+- https://forum.qt.io/topic/143391/mvvm-example-with-qt-qml-c
+- C++ 과 Qt/QML을 이용한 개발 - 008: (Quantum Jump-1)주소록 프로그램- 3. C++ 연동과 MVVM Pattern (https://dev-optimist.tistory.com/46)
 
 ### **5) Signal & Slot**
 Signal 발생시 Slot에 등록된 무언가 실행되는 구조  
- Signal and Slot 메커니즘이 작동하기 위해서는 connection을 해줘야 하는데 반드시 QObject를 상속받아야 함  
+Signal and Slot 메커니즘이 작동하기 위해서는 connection을 해줘야 하는데 반드시 QObject를 상속받아야 함  
 
-    C++ 과 Qt/QML을 이용한 개발 - 004: (Qt5 기본) Signal and Slot  
-    - https://dev-optimist.tistory.com/38  
+C++ 과 Qt/QML을 이용한 개발 - 004: (Qt5 기본) Signal and Slot  
+- https://dev-optimist.tistory.com/38  
 
-    Qml프로그래밍 cpp qml 연동1(c++에서 qml 함수 호출하기) 
-    - https://youonlyliveonce1.tistory.com/23
+Qml프로그래밍 cpp qml 연동1(c++에서 qml 함수 호출하기) 
+- https://youonlyliveonce1.tistory.com/23
 
-    Qml프로그래밍 cpp qml 연동2(qml 에서 C++ 함수 호출하기)
-    - https://youonlyliveonce1.tistory.com/25?category=712090
+Qml프로그래밍 cpp qml 연동2(qml 에서 C++ 함수 호출하기)
+- https://youonlyliveonce1.tistory.com/25?category=712090
 
-    Qml프로그래밍 cpp qml 연동3(qml 에서 C++ 함수 호출하기)
-    - https://youonlyliveonce1.tistory.com/26
+Qml프로그래밍 cpp qml 연동3(qml 에서 C++ 함수 호출하기)
+- https://youonlyliveonce1.tistory.com/26
 
 ### **6) 그 외의 cpp, qml 연동방법**  
+Signal Slot을 사용하지 않고도 Q_INVOKABLE, Q_PROPERTY로 cpp에서 정의된 메소드와 멤버변수에 qml에서 접근하는 방법도 존재한다.  
+
+QML/C++ 통합하기(Q_PROPERTY, Q_INVOKABLE, SIGNAL)  
+https://1d1cblog.tistory.com/494
+
+### 7) QSerialPort
+Qt에는 자체적으로 시리얼 통신을 위한 QSerialPort, QSerialPortInfo 모듈이 존재함.  
+https://doc.qt.io/qt-5/qserialport.html  
+https://doc.qt.io/qt-5/qserialportinfo.html
+
+SuperlumBS840 통신 구현의 경우 QSerialPort 클래스의 인스턴스를 멤버변수로 선언하여 해당 인스턴스의 멤버 함수들을 호출하는 별개의 SerialPort 클래스를 구현했다.  
 
 
 
