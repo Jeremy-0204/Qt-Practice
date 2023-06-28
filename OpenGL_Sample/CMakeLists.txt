@@ -10,6 +10,8 @@ qt_standard_project_setup()
 
 qt_add_executable(appOpenGL_Sample
     main.cpp
+    squircle.h squircle.cpp
+    squirclerenderer.h squirclerenderer.cpp
 )
 
 qt_add_qml_module(appOpenGL_Sample
