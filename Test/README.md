@@ -3,6 +3,7 @@
 
 ![image](https://github.com/Jeremy-0204/Qt_Practice/assets/107975543/d2772dbf-f63b-465e-bbfb-24483d7726dc)
 
+tndjheuisjuhfdjuihsfdjuiksfdsfda
 
 # PROBLEM TO FIX
 ## 1) 패킷 송수신
