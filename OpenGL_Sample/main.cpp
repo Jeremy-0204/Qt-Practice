@@ -1,7 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "squircle.h"
-
+#include "OpenGLTriangleItem.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,14 +8,11 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    //QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
+    // Register OpenGLItem as a QML type
+    qmlRegisterType<OpenGLTriangleItem>("OpenGLTriangleItem", 1, 0, "OpenGLTriangleItem");
 
-    const QUrl url(u"qrc:/OpenGL_Sample/Main.qml"_qs);
-    qmlRegisterType<Squircle>("Squircle", 1, 0, "Squircle");
-
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-        &app, []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
+    // Load the main QML file
+    const QUrl url(QStringLiteral("qrc:/OpenGL_Sample/Main.qml"));
     engine.load(url);
 
     return app.exec();

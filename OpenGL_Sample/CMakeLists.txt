@@ -6,12 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 
+
+
 qt_standard_project_setup()
 
 qt_add_executable(appOpenGL_Sample
     main.cpp
-    squircle.h squircle.cpp
-    squirclerenderer.h squirclerenderer.cpp
+    opengltriangleitem.h opengltriangleitem.cpp
 )
 
 qt_add_qml_module(appOpenGL_Sample
@@ -20,8 +21,17 @@ qt_add_qml_module(appOpenGL_Sample
     QML_FILES Main.qml
 )
 
+#qt_add_resources(QML_RESOURCES resources.qrc Main.qml)
+
+
 find_package(Qt6 REQUIRED COMPONENTS OpenGL)
 target_link_libraries(appOpenGL_Sample PRIVATE Qt6::OpenGL)
+
+find_package(Qt6 REQUIRED COMPONENTS OpenGLWidgets)
+target_link_libraries(appOpenGL_Sample PRIVATE Qt6::OpenGLWidgets)
+
+find_package(Qt6 COMPONENTS Core Quick Quick3D REQUIRED)
+target_link_libraries(appOpenGL_Sample PRIVATE Qt6::Core Qt6::Quick Qt6::Quick3D)
 
 set_target_properties(appOpenGL_Sample PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
