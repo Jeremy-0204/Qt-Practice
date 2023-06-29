@@ -4,14 +4,20 @@
 #include <QQuickFramebufferObject>
 #include <QOpenGLFunctions>
 
-class OpenGLTriangleItem : public QQuickFramebufferObject, protected QOpenGLFunctions
+class OpenGLTriangleItem : public QQuickFramebufferObject, public QQuickFramebufferObject::Renderer//, protected QOpenGLFunctions
 {
 public:
-    QOpenGLFramebufferObject *createFramebufferObject(const QSize &size);
-    void render();
+    OpenGLTriangleItem();
+    ~OpenGLTriangleItem();
+
+    virtual QOpenGLFramebufferObject *createFramebufferObject(const QSize &size) override;
+
+    virtual void render() override;
+
+    void initializeOpenGL();
 
 protected:
-    void initializeOpenGL();
+    QOpenGLFunctions mGLFunc;
 };
 
 #endif // OPENGLTRIANGLEITEM_H

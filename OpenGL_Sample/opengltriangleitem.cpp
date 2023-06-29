@@ -1,6 +1,17 @@
 #include "opengltriangleitem.h"
 #include <QOpenGLFramebufferObject>
 #include <QOpenGLShaderProgram>
+#include <QDebug>
+
+OpenGLTriangleItem::OpenGLTriangleItem()
+{
+
+}
+
+OpenGLTriangleItem::~OpenGLTriangleItem()
+{
+
+}
 
 QOpenGLFramebufferObject *OpenGLTriangleItem::createFramebufferObject(const QSize &size)
 {
@@ -11,21 +22,23 @@ QOpenGLFramebufferObject *OpenGLTriangleItem::createFramebufferObject(const QSiz
 
 void OpenGLTriangleItem::initializeOpenGL()
 {
-    initializeOpenGLFunctions();
+    mGLFunc.initializeOpenGLFunctions();
+    qDebug() << "INITIALIZED CALLED";
 }
 
 void OpenGLTriangleItem::render()
 {
     // Set up the OpenGL rendering
+    qDebug() << "RENDER CALLED";
 
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    mGLFunc.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    mGLFunc.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glViewport(0, 0, width(), height());
+    mGLFunc.glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    mGLFunc.glBindTexture(GL_TEXTURE_2D, 0);
+    mGLFunc.glViewport(0, 0, width(), height());
 
     // Notify QML that the frame is ready to be displayed
 
-    update();
+    QQuickFramebufferObject::update();
 }

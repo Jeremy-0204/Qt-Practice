@@ -30,9 +30,6 @@ target_link_libraries(appOpenGL_Sample PRIVATE Qt6::OpenGL)
 find_package(Qt6 REQUIRED COMPONENTS OpenGLWidgets)
 target_link_libraries(appOpenGL_Sample PRIVATE Qt6::OpenGLWidgets)
 
-find_package(Qt6 COMPONENTS Core Quick Quick3D REQUIRED)
-target_link_libraries(appOpenGL_Sample PRIVATE Qt6::Core Qt6::Quick Qt6::Quick3D)
-
 set_target_properties(appOpenGL_Sample PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
